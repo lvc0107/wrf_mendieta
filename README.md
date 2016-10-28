@@ -44,6 +44,7 @@ _______________________________________________________________________________
 clonar este repo:
 ```
 ssh <USER>@mendieta.ccad.unc.edu.ar 
+cd $HOME
 mkdir WRF ; cd WRF
 git clone https://github.com/lvc0107/wrf_mendieta.git
 ```
@@ -53,12 +54,6 @@ Cargar las siguientes variables de entorno
 
 ```
 . set_mendieta_configuration.sh
-```
-
-
-```
-cd $HOME
-mkdir WRF
 ```
 
 Descarga de WRF   
