@@ -15,8 +15,8 @@ _______________________________________________________________________________
 
 Código utilizado:  
 
-Procesamiento:  WRF3.8     
-Pre-procesamiento:  WPS3.8    
+Procesamiento:  WRF3.6.1     
+Pre-procesamiento:  WPS3.6.1    
 Post-procesamiento: ARWpost_V3  
 
 Herramienta adicional para post-procemiento: Grads
@@ -56,18 +56,18 @@ mkdir WRF
 Descarga de WRF   
 ```
 cd $WRF_BASE
-wget http://www2.mmm.ucar.edu/wrf/src/WRFV3.8.TAR.gz
-tar -xvzf WRFV3.8.TAR.gz
-rm WRFV3.8.TAR.gz
+wget http://www2.mmm.ucar.edu/wrf/src/WRFV3.6.1.TAR.gz
+tar -xvzf WRFV3.6.1.TAR.gz
+rm WRFV3.6.1.TAR.gz
 ```
 
 Descarga de WPS
 
 ```
 cd $WRF_BASE
-wget http://www2.mmm.ucar.edu/wrf/src/WPSV3.8.TAR.gz 
-tar -xvzf WPSV3.8.TAR.gz
-rm WPSV3.8.TAR.gz
+wget http://www2.mmm.ucar.edu/wrf/src/WPSV3.6.1.TAR.gz 
+tar -xvzf WPSV3.6.1.TAR.gz
+rm WPSV3.6.1.TAR.gz
 ```
 
 Descarga de ARWpost
