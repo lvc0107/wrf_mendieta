@@ -15,8 +15,8 @@ _______________________________________________________________________________
 
 Código utilizado:  
 
-Procesamiento:  WRF3.6.1     
-Pre-procesamiento:  WPS3.6.1    
+Procesamiento:  WRF3.6.1   
+Pre-procesamiento:  WPS3.6.1      
 Post-procesamiento: ARWpost_V3  
 
 Herramienta adicional para post-procemiento: Grads
@@ -40,6 +40,14 @@ http://www.ece.uvic.ca/~mdadams/jasper/software/jasper-1.900.1.zip
 _______________________________________________________________________________
 
 **2. Descarga de WRF/WPS/ARWpost**
+
+clonar este repo:
+```
+ssh <USER>@mendieta.ccad.unc.edu.ar 
+mkdir WRF ; cd WRF
+git clone https://github.com/lvc0107/wrf_mendieta.git
+```
+
 
 Cargar las siguientes variables de entorno
 
