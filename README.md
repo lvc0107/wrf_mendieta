@@ -86,7 +86,7 @@ _______________________________________________________________________________
 
 **3. Instalación de WRF + dependencias**
 
-**3.1. Seteo de entorno ** 
+**3.1. Seteo de entorno** 
 
 
 Jasper:
@@ -106,8 +106,10 @@ make check
 make install
 ```
 
+**ATENCION!!! Esta seccion debe usarse en caso de que las herramientas de MENDIETA no esten instaladas**   
+**Actualmente las herramientas si estan utilizadas por lo tanto pasar directamente a la seccion 3.1.2**   
 
-**3.1.1 Instalacion de tools propias (Sin usar las que provee Mendieta) **
+**3.1.1 Instalacion de tools propias (Sin usar las que provee Mendieta)**
 
 Cargar las siguientes variables de entorno
 ```
@@ -199,7 +201,7 @@ make install
 ```
 
 
-**3.2. Instalación de WRF **  
+**3.2. Instalación de WRF**  
 
  
 
@@ -248,7 +250,7 @@ ndown.exe
 wrf.exe
 ```
 
-**3.3 Instalación de WPS **
+**3.3 Instalación de WPS**
 
 ```
 cd $WPS_DIR
@@ -291,7 +293,7 @@ ungrib.exe -> ungrib/src/ungrib.exe
 geogrid.exe -> geogrid/src/geogrid.exe
 ```
 
-**3.4 Instalación de ARWpost **
+**3.4 Instalación de ARWpost**
 
 
 Agregar -lnetcdff en src/Makefile
@@ -329,7 +331,7 @@ interval_seconds = 3600
 Consultar este parámetro con Experto/usuario de WRF.
 
 
-**3.5 Instalación de grads **
+**3.5 Instalación de grads**
 
 ```
 cd $WRF_BASE/library
@@ -376,7 +378,7 @@ cd $WPS_DIR
 geog_data_path = ‘/home/< USER >/WRF38/WPS/geog’ #USER que corresponda
 ```
 _________________________________________________________________________
-**5. Ejecucion del modelo **  
+**5. Ejecucion del modelo**  
 
 Configuración de entorno:
 
