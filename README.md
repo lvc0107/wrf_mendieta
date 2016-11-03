@@ -465,10 +465,10 @@ scenarios
 
 **5.2 Correr script: run_wrf_model.py**   
 Este script realiza las siguientes tareas:   
-1) Descarga grib files dada una fecha en el directorio gribfiles en el step anterior    
+1) Descarga grib files dada una fecha en el directorio gribfiles creado en el step anterior    
 2) Actualiza fecha en namelist.wps en el directorio scenarios      
 3) Actualiza fecha en los namelist.input dentro de cada directorio scenarios/Scenarioi con i:{1..N}     
-4) Actualiza fecha en namelist.arwPost dentro de cada directorio scenarios/Scenarioi con i:{1..N}     
+4) Actualiza fecha en namelist.ARWpost dentro de cada directorio scenarios/Scenarioi con i:{1..N}     
 5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
@@ -477,7 +477,7 @@ python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --cores=40
 
 El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
 
-Para ejecutar todos los scenarios en dos nodos de capability (20 cores p/nodo)
+Ejemplo: Para ejecutar todos los scenarios en dos nodos de capability (20 cores p/nodo)
 ```
 python run_wrf_model.py --start_date=2016102000 --offset=36 --cores=40
 ```
@@ -490,7 +490,7 @@ sbatch job_wrf_40.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
 
 
 Nota: 
-Ajustar el tiempo de ejecución del modelo en el script job_wrf.sh de la forma mas precisa posible.
+Ajustar el tiempo de ejecución del modelo en el script job_wrf_N.sh de la forma mas precisa posible. # con N en [40, 60, 80, 100]    
 Ejemplo si la ejecución del modelo toma aproximadamente (poco menos que) una hora y media:
 
 ```
