@@ -283,8 +283,8 @@ Notar que al iniciar debe dar un mensaje como el siguiente:
 ```
 Will use NETCDF in dir: /home/<USER>/library/netCDF
 Found Jasper environment variables for GRIB2 support...
-  $JASPERLIB = /home/<USER>/library/jasper/lib
-  $JASPERINC = /home/<USER>/library/jasper/include
+  $JASPERLIB = /home/<USER>/wrf_mendieta/library/jasper/lib
+  $JASPERINC = /home/<USER>/wrf_mendieta/library/jasper/include
 ```
 
 Elegir opción 1   
