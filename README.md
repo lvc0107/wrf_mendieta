@@ -115,9 +115,9 @@ imgcmp  imginfo  jasper  tmrdemo
 ```
 
 
-**ATENCION!!! Esta seccion debe usarse en caso de que las dependencias de MENDIETA no esten instaladas**  
+**ATENCION!!! La siguiente seccion debe usarse en caso de que las dependencias de MENDIETA no esten instaladas**  
 **Actualmente las dependencias necesarias si estan instaladas por lo tanto pasamos directamente a la seccion 3.1.2**  
-**En caso de que no estuvieses instaladas seguir en esta seccion. Tambien es importante cambiar ".set_configuration.sh" por "set_custom_configuration.sh" en los archivos job_wrf_i.sh con i:{40,60,80,100}**  
+**En caso de que no estuvieses instaladas seguir en la siguiente seccion. Tambien es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en los archivos job_wrf_i.sh con i:{40,60,80,100}**  
 
 **3.1.1 Instalacion de tools propias (Sin usar las que provee Mendieta)**
 
