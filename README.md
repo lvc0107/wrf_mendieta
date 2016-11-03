@@ -405,13 +405,13 @@ cd $WRF_BASE/
 mkdir gribfiles
 ```
 
-Correr script: run_wrf_model.py
-Este script realiza las siguientes tareas:
+Correr script: run_wrf_model.py   
+Este script realiza las siguientes tareas:   
 1) Descarga grib files dada una fecha en el directorio creado en el step anterior  
-2) Actualiza fecha en namelist.wps
-3) Actualiza fecha en los namelist.input
-4) Actualiza fecha en namelist.arwPost
-5) Ejecuta el modelo para cada uno de los scenarios
+2) Actualiza fecha en namelist.wps  
+3) Actualiza fecha en los namelist.input  
+4) Actualiza fecha en namelist.arwPost   
+5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
 python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --cores=40
