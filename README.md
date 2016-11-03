@@ -407,6 +407,7 @@ mkdir gribfiles
 
 ```
 tree scenarios
+scenarios
 ├── Scenario1
 │   ├── namelist.ARWpost
 │   └── namelist.input
@@ -434,6 +435,7 @@ tree scenarios
 Ejemplo usado para CAEARTE  
 ```
 tree scenarios
+scenarios
 ├── A_Thompson_MYJ
 │   ├── namelist.ARWpost
 │   └── namelist.input
