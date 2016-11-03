@@ -404,13 +404,70 @@ Configuración de entorno:
 cd $WRF_BASE/
 mkdir gribfiles
 ```
+5.1. Crear dentro del directorio scenarios con la siguiente estructura:
 
-Correr script: run_wrf_model.py   
+```
+tree scenarios
+├── Scenario1
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── Scenario2
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── Scenario3
+│   ├── namelist.ARWpost
+│   └── namelist.input
+│   .
+│   .
+│   .
+├── ScenarioN
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── gradfile1.gs
+├── gradfile2.gs
+├── .
+├── .
+├── .
+├── gradfileN.gs
+└── namelist.wps
+```
+
+Ejemplo usado para CAEARTE  
+```
+tree scenarios
+├── A_Thompson_MYJ
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── B_Marrison_MYJ_sf_sfclay_physics
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── cbar.gs
+├── C_WDM6_QNSE_sf_sfclay_physics
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── D_WRF6_MYJ_sf_sfclay_physics
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── E_WDM6_MYNN3
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── HPC_CBA_Rain.gs
+├── HPC_CBA_Tmax_Min.gs
+├── meteogramas_Preciptation.gs
+├── meteogramas_rh.gs
+├── meteogramas_Temp.gs
+├── meteogramas_WindDir.gs
+├── meteogramas_WindSpeed.gs
+├── namelist.wps
+└── rgbset.gs
+```
+
+5.2 Correr script: run_wrf_model.py   
 Este script realiza las siguientes tareas:   
-1) Descarga grib files dada una fecha en el directorio creado en el step anterior  
-2) Actualiza fecha en namelist.wps  
-3) Actualiza fecha en los namelist.input  
-4) Actualiza fecha en namelist.arwPost   
+1) Descarga grib files dada una fecha en el directorio gribfiles en el step anterior  
+2) Actualiza fecha en namelist.wps en el directorio scenarios 
+3) Actualiza fecha en los namelist.input dentro de cada directorio scenarios/Scenarioi con i:{1..N}
+4) Actualiza fecha en namelist.arwPost dentro de cada directorio scenarios/Scenarioi con i:{1..N}  
 5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
