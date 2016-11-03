@@ -475,16 +475,19 @@ Este script realiza las siguientes tareas:
 python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --cores=40
 ```
 
-El script ejecuta los 5 scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
+El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
 
-Se ejecutan los 5 modelos en dos nodos -20 cores p/nodo
-sbatch ./job_wrf_40.sh
-
-Ejemplo:
-
+Para ejecutar todos los scenarios en dos nodos de capability (20 cores p/nodo)
 ```
 python run_wrf_model.py --start_date=2016102000 --offset=36 --cores=40
 ```
+
+Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de capability (20 cores p/nodo)  
+para las misma fecha de inicio y periodo de 36 hs    
+```
+sbatch job_wrf_40.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
+```
+
 
 Nota: 
 Ajustar el tiempo de ejecución del modelo en el script job_wrf.sh de la forma mas precisa posible.
