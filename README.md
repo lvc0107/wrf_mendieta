@@ -464,10 +464,10 @@ tree scenarios
 
 **5.2 Correr script: run_wrf_model.py**   
 Este script realiza las siguientes tareas:   
-1) Descarga grib files dada una fecha en el directorio gribfiles en el step anterior  
-2) Actualiza fecha en namelist.wps en el directorio scenarios 
-3) Actualiza fecha en los namelist.input dentro de cada directorio scenarios/Scenarioi con i:{1..N}    
-4) Actualiza fecha en namelist.arwPost dentro de cada directorio scenarios/Scenarioi con i:{1..N}    
+1) Descarga grib files dada una fecha en el directorio gribfiles en el step anterior    
+2) Actualiza fecha en namelist.wps en el directorio scenarios      
+3) Actualiza fecha en los namelist.input dentro de cada directorio scenarios/Scenarioi con i:{1..N}     
+4) Actualiza fecha en namelist.arwPost dentro de cada directorio scenarios/Scenarioi con i:{1..N}     
 5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
@@ -492,12 +492,12 @@ Ejemplo si la ejecución del modelo toma aproximadamente (poco menos que) una ho
 ```
 SBATCH --time 0-1:30
 ```
+
 La ejecución genera los output en los directorios:
 ```
 $WRF_BASE/output/<fecha_actual>/<JOB_ID>
-
-
 ```
+
 La ejecución genera logs en los directorios:
 ```
 $WRF_BASE/logs/<fecha_actual>/$RUN_PARAMETERS'_'$SLURM_JOB_ID.out
