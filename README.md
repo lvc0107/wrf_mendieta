@@ -369,13 +369,12 @@ _________________________________________________________________________
 
 ```
 cd $WPS_DIR
-mkdir geog
-cd geog
 wget http://www2.mmm.ucar.edu/wrf/src/wps_files/geog_complete.tar.bz2
 tar -xjvf geog_complete.tar.bz2
 rm geog_complete.tar.bz2
 
 #datos adicionales
+cd geog
 wget http://www2.mmm.ucar.edu/wrf/src/wps_files/topo_gmted2010_30s.tar.bz2
 tar -xjvf topo_gmted2010_30s.tar
 rm topo_gmted2010_30s.tar
