@@ -384,7 +384,6 @@ wget http://www2.mmm.ucar.edu/wrf/src/wps_files/topo_30s.tar.bz2
 tar -xjvf topo_30s.tar.bz2
 rm  topo_30s.tar.bz2
 
-
 wget http://www2.mmm.ucar.edu/wrf/src/wps_files/modis_landuse_21class_30s.tar.bz2
 tar -xjvf modis_landuse_21class_30s.tar.bz2
 rm modis_landuse_21class_30s.tar.bz2
@@ -392,8 +391,9 @@ rm modis_landuse_21class_30s.tar.bz2
 Actualizar namelist.wps con path al directorio recien creado
 
 ```
-cd $WPS_DIR
-geog_data_path = ‘/home/< USER >/wrf_mendieta/<WRF_VERSION>/WPS/geog’ # <USER> y <WRF_VERSION> que correspondan
+cd $WRF_BASE/scenarios
+#Edit namelist.wps
+geog_data_path = ‘/home/<USER>/wrf_mendieta/<WRF_VERSION>/WPS/geog’ # <USER> y <WRF_VERSION> que correspondan
 ```
 _________________________________________________________________________
 **5. Ejecucion del modelo**
