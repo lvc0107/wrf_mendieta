@@ -115,9 +115,9 @@ imgcmp  imginfo  jasper  tmrdemo
 ```
 
 
-**ATENCION!!! La siguiente seccion debe usarse en caso de que las dependencias de MENDIETA no esten instaladas**  
-**Actualmente las dependencias necesarias si estan instaladas por lo tanto pasamos directamente a la seccion 3.1.2**  
-**En caso de que no estuvieses instaladas seguir en la siguiente seccion. Tambien es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en los archivos job_wrf_i.sh con i:{40,60,80,100}**  
+**ATENCION!!! La siguiente seccion debe usarse en caso de que las dependencias de MENDIETA no esten instaladas.**  
+**Actualmente las dependencias necesarias si estan instaladas por lo tanto pasamos directamente a la seccion 3.1.2.**  
+**En caso de que no estuvieses instaladas seguir en la siguiente seccion. Tambien es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en los archivos job_wrf_i.sh con i:{40,60,80,100}.**  
 
 **3.1.1 Instalacion de tools propias (Sin usar las que provee Mendieta)**
 
@@ -242,7 +242,7 @@ which: no timex in (/opt/gcc/4.9.3/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin
 
 ```
 
-Verificar que las variables **NETCDF** y **PHDF5** apunten a los path seteados en los archivos set_confiration(set_custom_configuration).
+Verificar que las variables **NETCDF** y **PHDF5** apunten a los path seteados en los archivos set_configuration.sh (set_custom_configuration.sh). 
 
 Elegir opciones 34-1
 34. x86_64 Linux, gfortran compiler with gcc (dmpar)
