@@ -321,7 +321,9 @@ cp $WRF_BASE/link_grib.csh $WPS_DIR
 
 **3.4 Instalación de ARWpost**
 
-
+```
+cd $ARWPOST_DIR
+```
 Agregar -lnetcdff en src/Makefile
 
 ```
