@@ -404,7 +404,7 @@ Configuración de entorno:
 cd $WRF_BASE/
 mkdir gribfiles
 ```
-5.1. Crear dentro del directorio scenarios con la siguiente estructura:
+**5.1. Crear el directorio scenarios con la siguiente estructura:**
 
 ```
 tree scenarios
@@ -462,19 +462,19 @@ tree scenarios
 └── rgbset.gs
 ```
 
-5.2 Correr script: run_wrf_model.py   
+**5.2 Correr script: run_wrf_model.py**   
 Este script realiza las siguientes tareas:   
 1) Descarga grib files dada una fecha en el directorio gribfiles en el step anterior  
 2) Actualiza fecha en namelist.wps en el directorio scenarios 
-3) Actualiza fecha en los namelist.input dentro de cada directorio scenarios/Scenarioi con i:{1..N}
-4) Actualiza fecha en namelist.arwPost dentro de cada directorio scenarios/Scenarioi con i:{1..N}  
+3) Actualiza fecha en los namelist.input dentro de cada directorio scenarios/Scenarioi con i:{1..N}    
+4) Actualiza fecha en namelist.arwPost dentro de cada directorio scenarios/Scenarioi con i:{1..N}    
 5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
 python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --cores=40
 ```
 
-El script ejecuta los 5 scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total)
+El script ejecuta los 5 scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
 
 Se ejecutan los 5 modelos en dos nodos -20 cores p/nodo
 sbatch ./job_wrf_40.sh
