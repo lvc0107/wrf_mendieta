@@ -222,7 +222,7 @@ cd $WRF_DIR
 ```
 
 
-Al iniciar configure debe dar un mensaje como el siguiente:
+Al iniciar configure debe dar un mensaje como el siguiente:   
 De esta pinta si se esta usando set_configuration.sh (Herramientas provistas por Miendeta. RECOMENDADO)
 ```
 checking for perl5... no
