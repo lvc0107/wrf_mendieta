@@ -49,7 +49,8 @@ ssh <USER>@mendieta.ccad.unc.edu.ar
 cd $HOME
 git clone https://github.com/lvc0107/wrf_mendieta.git
 cd wrf_mendieta
-mkdir WRF3.6.1 ```
+mkdir WRF3.6.1 
+```
 
 
 Cargar las siguientes variables de entorno
