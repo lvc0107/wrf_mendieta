@@ -1,0 +1,122 @@
+ERROR  in netcdf
+configure: error: Can't find or link to the hdf5 library. Use --disable-netcdf-4, or see config.log for errors.
+
+FIX:
+ ./configure --prefix=/home/mvargas/WRF/library/netcdf FC=gfortran F77=gfortran CC=gcc --enable-shared LDFLAGS="-L$HOME/WRF/library/hdf5/hdf5-1.8.13/lib"  CPPFLAGS="-I$HOME/WRF/library/hdf5/hdf5-1.8.13/include"
+
+
+ERROR in make check ncdf-fortran
+
+
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_put_vara_short'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_get_vara_short'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_get_att_float'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_get_vara_schar'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_inq_attname'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_set_default_format'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_inq_dimname'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_get_vara_double'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_put_vara_text'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_put_var_schar'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_inq_dim'
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_put_vars_schar'
+FIX:
+Corregir path 
+
+echo export NETCDF=$(pwd) >> ~/.bashrc  
+echo export NETCDF_LIB=$(pwd)/../lib >> ~/.bashrc  
+echo export NETCDF_INC=(pwd)/../include >> ~/.bashrc  
+
+
+ERROR in make check ncdf-fortran
+../fortran/.libs/libnetcdff.so: undefined reference to `nc_open_mem'
+collect2: error: ld returned 1 exit status
+Makefile:1240: recipe for target 'nf_test' failed
+make[2]: *** [nf_test] Error 1
+FIX : usar netcdf-fortran-4.2
+
+
+Error de compilacion WRF:
+config seleccionada: 35-1
+
+
+USando mpich
+la declaración previa de ‘MPI_Fint’ estaba aquí
+error: redefinición de la definición de tipo ‘MPI_Fint’
+
+Fix: el error es que olvide cargar librerias
+load module compiler/gcc4.8.4
+
+librerias cargadas: mpi/openmpi/1.8.4-gcc_4.8.4
+error: expected declaration specifiers or ‘...’ before ‘MPI_Comm’
+1147                               int tag, MPI_Comm comm);
+
+FIX:  
+./clean  -a
+./configure
+editar confire.wrf agregando  -DMPI2_SUPPORT en la linea DM_CC.
+compilar de nuevo
+
+
+ERROR en configure usando mvapich
+testing for MPI_Comm_f2c and MPI_Comm_c2f
+   MPI_Comm_f2c and MPI_Comm_c2f are not supported
+
+FIX : el problema es que WRF estaba tomando openmpi desde /src/lib y para openmpi hay que cargar el flag -DMPI2_SUPPORT
+fix parcial: usar openmi.TODO  averiguar como haer para usar mvapich
+
+ALLOCATE( clat_glob(ids:ide,jds:jde), STAT=alloc_status, ERRMSG=alloc_err_
+                                                            1
+Error: Error sintáctico en la declaración ALLOCATE en (1)
+FIX: Hay que pisar el archivo start_em.F ubicado en dym_em  
+por el archivo http://www2.mmm.ucar.edu/wrf/src/fix/start_em.F.fix.3011 
+ 
+Error:
+/home/alighezzolo/conae/gcc/library/netCDF/lib/libnetcdf.so: undefined reference to `H5T_STD_U16LE_g'
+FIX:
+
+
+Error: wrf_io.o:wrf_io.f:(.text+0xaa58): more undefined references to `GOMP_parallel' follow
+collect2: error: ld returned 1 exit status
+
+FIX:
+------------------------------------------------------------------r
+
+Error de compilacion en WPS:
+ undefined reference to `GOMP_parallel_start'
+FIX:
+./clean  -a
+./configure
+editar confire.wps agregando -lgomp  ala variable  WRF_LIB 
+compilar de nuevo
+
+-------------------------------------------------------------------
+Error de compilacion en WPS:
+error: unrecognized command line option mpif90 -f90=gfortran
+FIX: Borrar -f90=gfortran  en configure.wps
+gcc: error: unrecognized command line option ‘-cc=gcc’
+FIX: Borrar -cc=gcc en configure.wps
+
+
+-------------------------------------------------------------------
+Error de ejecucion  en metgrid.exe, real.exe, wrf.exe  cuando compilamos wrf y wps con 
+/mvapich2/2.1-gcc_4.9.2:
+
+wrf.exe: /opt/gcc/4.8.4/lib64/libgomp.so.1: version `GOMP_4.0' not found (required by wrf.exe)
+
+FIX: ver  readme
+compilar openmi con flag --mpi2=pmi  en comadno srun
+TODO  revisar si esta  bien esta info
+
+Error de ejecucion geogrid
+error while loading shared libraries: libnetcdff.so.6: cannot open shared object file: No such file or directory
+FIX: CHECKEAR que la  variable $LD_LIBRARY_PATH tenga bien los valores de las librerias de netcdf
+
+
+
+
+-------------------------------------------------------------------
+Error en compilacion de libreria de  CUDA:
+gfortran: error: /opt/cuda/6.5/lib64/libcublasemu.so: No existe el fichero o el directorio
+FIX: comentar en makefile el uso de cuda emu
+

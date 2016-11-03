@@ -1,20 +1,20 @@
  &time_control
- run_days                            = 0,
- run_hours                           = 24,
- run_minutes                         = 0,
- run_seconds                         = 0,
- start_year                          = 2016,
- start_month                         = 09,
- start_day                           = 28,
- start_hour                          = 18,
- start_minute                        = 00,
- start_second                        = 00,
- end_year                            = 2016,
- end_month                           = 09,
- end_day                             = 29,
- end_hour                            = 18,
- end_minute                          = 00,
- end_second                          = 00,
+ run_days                            = 0
+ run_hours                           = 36
+ run_minutes                         = 0
+ run_seconds                         = 0
+ start_year                          = 2016
+ start_month                         = 10
+ start_day                           = 20
+ start_hour                          = 00
+ start_minute                        = 00
+ start_second                        = 00
+ end_year                            = 2016
+ end_month                           = 10
+ end_day                             = 21
+ end_hour                            = 12
+ end_minute                          = 00
+ end_second                          = 00
  interval_seconds                    = 10800
  input_from_file                     = .true.,.False.,.true.,
  history_interval                    = 60,  60,   60,
@@ -109,4 +109,57 @@
  /
 asks_per_group = 0,
  nio_groups = 1,
+ /
+
+ /
+
+ &grib2
+ /
+
+ &namelist_quilt
+ nio_tasks_per_group = 0,
+ nio_groups = 1,
+ /
+asks_per_group = 0,
+ nio_groups = 1,
+ /
+= 1,
+ /
+asks_per_group = 0,
+ nio_groups = 1,
+ /
+_groups = 1,
+ /
+                             = .false., .true., .true.,
+ /
+
+ &grib2
+ /
+
+ &namelist_quilt
+ nio_tasks_per_group = 0,
+ nio_groups = 1,
+ /
+asks_per_group = 0,
+ nio_groups = 1,
+ /
+
+ /
+
+ &grib2
+ /
+
+ &namelist_quilt
+ nio_tasks_per_group = 0,
+ nio_groups = 1,
+ /
+asks_per_group = 0,
+ nio_groups = 1,
+ /
+= 1,
+ /
+asks_per_group = 0,
+ nio_groups = 1,
+ /
+_groups = 1,
  /

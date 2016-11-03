@@ -99,7 +99,7 @@ def request(url, file):
 
 #############################################################################
 
-def download_grib_files(start_date, grib2_dir):
+def download_grib_files(start_date, offset, grib2_dir):
 
     INIDATE = start_date
     DIR_OPER_DATA = grib2_dir
@@ -142,7 +142,7 @@ def download_grib_files(start_date, grib2_dir):
     urllib2.socket.setdefaulttimeout(30)
 
     # Total forecast length( in hours) for which data are requested:
-    NHOUR = 33
+    NHOUR = int(offset)
     # NHOUR = int(os.environ['HRUN'])
 
     # Interval in hours between two forecast times:
