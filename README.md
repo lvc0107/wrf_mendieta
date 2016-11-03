@@ -349,16 +349,6 @@ ls *.exe
 ARWpost.exe 
 ```
 
-Editar namelist.ARWpost configurando los parámetros que sean necesarios. Ejemplo:
-
-```
-cd $HOME/WRF/ARWpost
-interval_seconds = 3600
-```
-
-Consultar este parámetro con Experto/usuario de WRF.
-
-
 **3.5 Instalación de grads**
 
 ```
