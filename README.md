@@ -108,6 +108,12 @@ make
 make check
 make install
 ```
+Chequeo de la correcta instalacion de jasper:
+```
+ls ../bin/
+imgcmp  imginfo  jasper  tmrdemo
+```
+
 
 **ATENCION!!! Esta seccion debe usarse en caso de que las herramientas de MENDIETA no esten instaladas** 
 **Actualmente las herramientas si estan utilizadas por lo tanto pasar directamente a la seccion 3.1.2**
