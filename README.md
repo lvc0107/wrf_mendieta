@@ -70,7 +70,7 @@ rm WRFV3.6.1.TAR.gz
 Descarga de WPS
 
 ```
-cd $WRF_BASE/$WRF3.6.1
+cd $WRF_BASE/WRF3.6.1
 wget http://www2.mmm.ucar.edu/wrf/src/WPSV3.6.1.TAR.gz
 tar -xvzf WPSV3.6.1.TAR.gz
 rm WPSV3.6.1.TAR.gz
@@ -79,7 +79,7 @@ rm WPSV3.6.1.TAR.gz
 Descarga de ARWpost
 
 ```
-cd $WRF_BASE/$WRF3.6.1
+cd $WRF_BASE/WRF3.6.1
 wget http://www2.mmm.ucar.edu/wrf/src/ARWpost_V3.tar.gz
 tar -xvzf ARWpost_V3.tar.gz 
 rm ARWpost_V3.tar.gz
