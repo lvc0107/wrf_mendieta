@@ -494,16 +494,23 @@ SBATCH --time 0-1:30
 ```
 La ejecución genera los output en los directorios:
 ```
-$WRF_BASE/output/<fecha_actual>/<JOB_ID>/arwpost_run/output/meteogramas
+$WRF_BASE/output/<fecha_actual>/<JOB_ID>
 
-donde RUN_PARAMETERS esta definido en el script job_wrf_N.sh  # con N en [40, 60, 80, 100]
+
 ```
+La ejecución genera logs en los directorios:
+```
+$WRF_BASE/logs/<fecha_actual>/$RUN_PARAMETERS'_'$SLURM_JOB_ID.out
+```
+donde RUN_PARAMETERS esta definido en el script job_wrf_N.sh  # con N en [40, 60, 80, 100]    
 
-Tambien se pueden ejecutar los scripts: 
-job_wrf_60.sh 
-job_wrf_80.sh 
-job_wrf_100.sh 
 
+Tambien se pueden ejecutar los scripts:  
+```
+job_wrf_60.sh  
+job_wrf_80.sh   
+job_wrf_100.sh   
+```
 Que ejecutan los scenarios usando 3,4 y 5 nodos de 20 cores c/u respectivamente
 
 ```
