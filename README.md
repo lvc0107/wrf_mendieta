@@ -249,7 +249,7 @@ Elegir opciones 34-1
 Compile for nesting? (1=basic) 1
 
 
-Si se va  a utilizar openmpi ,actualziar la variable DM_CC con el valor -DMPI2_SUPPORT  en el archivo configure.wrf
+Si se va a utilizar openmpi(en lugar de mvapich), actualizar la variable DM_CC con el valor -DMPI2_SUPPORT  en el archivo configure.wrf
 
 ```
 DM_CC           =       mpicc -DMPI2_SUPPORT
