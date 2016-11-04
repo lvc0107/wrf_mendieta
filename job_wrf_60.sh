@@ -34,7 +34,7 @@ echo SCENARIO = $1
 echo ACTUAL START DATE = $2
 echo ACTUAL END DATE = $3
 
-RUN_PARAMETERS='60_cores_'$scenario
+RUN_PARAMETERS=$[ $NODES * 20 ]'_cores_'$scenario
 if [ -z $SLURM_JOB_ID ]; then
     SLURM_JOB_ID=11111
     TEMP_PATH=$WRF_DIR/test/em_real/$RUN_PARAMETERS/$SLURM_JOB_ID
@@ -156,20 +156,33 @@ ln -s $ARWPOST_DIR/ARWpost.exe ARWpost.exe
 
 cd output
 cp $SCENARIOS_DIR/*.gs .
-
+echo ==================================================
+echo executing grads -pbcx 'run HPC_CBA_Tmax_Min.gs'
 grads -pbcx 'run HPC_CBA_Tmax_Min.gs'
+echo ==================================================
+echo executing grads -pbcx 'run HPC_CBA_Rain.gs'
 grads -pbcx 'run HPC_CBA_Rain.gs'
+echo ==================================================
+echo executing grads -pbcx 'run meteogramas_Preciptation.gs'
 grads -pbcx 'run meteogramas_Preciptation.gs'
+echo ==================================================
+echo executing grads -pbcx 'run meteogramas_rh.gs'
 grads -pbcx 'run meteogramas_rh.gs'
+echo ==================================================
+echo executing grads -pbcx 'run meteogramas_Temp.gs'
 grads -pbcx 'run meteogramas_Temp.gs'
+echo ==================================================
+echo executing grads -pbcx 'run meteogramas_WindDir.gs'
 grads -pbcx 'run meteogramas_WindDir.gs'
+echo ==================================================
+echo executing grads -pbcx 'run meteogramas_WindSpeed.gs'
 grads -pbcx 'run meteogramas_WindSpeed.gs'
 
 current_date=$(date '+%d-%b-%Y')
 
 OUTPUT_DIR=$WRF_BASE/output/$current_date/$SLURM_JOB_ID
 mkdir -p $OUTPUT_DIR
-#mv $ARWPOST_RUN_DIR/* $OUTPUT_DIR 
+cp -avr $ARWPOST_RUN_DIR/* $OUTPUT_DIR 
 
 ################################# Clean temporary files #################################
 
@@ -179,6 +192,6 @@ mkdir -p $WRF_BASE/logs/$current_date
 mv $LOGFILE $WRF_BASE/logs/$current_date/$FINAL_LOGFILE
 
 rm -rf $WPS_RUN_DIR
-#rm -rf $WRF_RUN_DIR
-#rm -rf $ARWPOST__RUN_DIR
+rm -rf $WRF_RUN_DIR
+rm -rf $ARWPOST__RUN_DIR
 

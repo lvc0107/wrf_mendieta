@@ -49,7 +49,8 @@ ssh <USER>@mendieta.ccad.unc.edu.ar
 cd $HOME
 git clone https://github.com/lvc0107/wrf_mendieta.git
 cd wrf_mendieta
-mkdir WRF3.6.1 ```
+mkdir WRF3.6.1 
+```
 
 
 Cargar las siguientes variables de entorno
@@ -69,7 +70,7 @@ rm WRFV3.6.1.TAR.gz
 Descarga de WPS
 
 ```
-cd $WRF_BASE/$WRF3.6.1
+cd $WRF_BASE/WRF3.6.1
 wget http://www2.mmm.ucar.edu/wrf/src/WPSV3.6.1.TAR.gz
 tar -xvzf WPSV3.6.1.TAR.gz
 rm WPSV3.6.1.TAR.gz
@@ -78,7 +79,7 @@ rm WPSV3.6.1.TAR.gz
 Descarga de ARWpost
 
 ```
-cd $WRF_BASE/$WRF3.6.1
+cd $WRF_BASE/WRF3.6.1
 wget http://www2.mmm.ucar.edu/wrf/src/ARWpost_V3.tar.gz
 tar -xvzf ARWpost_V3.tar.gz 
 rm ARWpost_V3.tar.gz
@@ -107,10 +108,16 @@ make
 make check
 make install
 ```
+Chequeo de la correcta instalacion de jasper:
+```
+ls ../bin/
+imgcmp  imginfo  jasper  tmrdemo
+```
 
-**ATENCION!!! Esta seccion debe usarse en caso de que las herramientas de MENDIETA no esten instaladas** 
-**Actualmente las herramientas si estan utilizadas por lo tanto pasar directamente a la seccion 3.1.2**
-**Tambien es importante cambiar ".set_configuration.sh" por "set_custom_configuration.sh" en los archivos job_wrf_i.sh con i:{40,60,80,100}**
+
+**ATENCION!!! La siguiente seccion debe usarse en caso de que las dependencias de MENDIETA no esten instaladas.**  
+**Actualmente las dependencias necesarias si estan instaladas por lo tanto pasamos directamente a la seccion 3.1.2.**  
+**En caso de que no estuvieses instaladas seguir en la siguiente seccion. Tambien es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en los archivos job_wrf_i.sh con i:{40,60,80,100}.**  
 
 **3.1.1 Instalacion de tools propias (Sin usar las que provee Mendieta)**
 
@@ -215,7 +222,7 @@ cd $WRF_DIR
 ```
 
 
-Al iniciar configure debe dar un mensaje como el siguiente:
+Al iniciar configure debe dar un mensaje como el siguiente:   
 De esta pinta si se esta usando set_configuration.sh (Herramientas provistas por Miendeta. RECOMENDADO)
 ```
 checking for perl5... no
@@ -235,14 +242,14 @@ which: no timex in (/opt/gcc/4.9.3/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin
 
 ```
 
-Verificar que las variables **NETCDF** y **PHDF5** apunten a los path seteados en los archivos set_confiration(set_custom_configuration).
+Verificar que las variables **NETCDF** y **PHDF5** apunten a los path seteados en los archivos set_configuration.sh (set_custom_configuration.sh). 
 
 Elegir opciones 34-1
 34. x86_64 Linux, gfortran compiler with gcc (dmpar)
 Compile for nesting? (1=basic) 1
 
 
-Si se va  a utilizar openmpi ,actualziar la variable DM_CC con el valor -DMPI2_SUPPORT  en el archivo configure.wrf
+Si se va a utilizar openmpi(en lugar de mvapich), actualizar la variable DM_CC con el valor -DMPI2_SUPPORT  en el archivo configure.wrf
 
 ```
 DM_CC           =       mpicc -DMPI2_SUPPORT
@@ -276,8 +283,8 @@ Notar que al iniciar debe dar un mensaje como el siguiente:
 ```
 Will use NETCDF in dir: /home/<USER>/library/netCDF
 Found Jasper environment variables for GRIB2 support...
-  $JASPERLIB = /home/<USER>/library/jasper/lib
-  $JASPERINC = /home/<USER>/library/jasper/include
+  $JASPERLIB = /home/<USER>/wrf_mendieta/library/jasper/lib
+  $JASPERINC = /home/<USER>/wrf_mendieta/library/jasper/include
 ```
 
 Elegir opción 1   
@@ -314,7 +321,9 @@ cp $WRF_BASE/link_grib.csh $WPS_DIR
 
 **3.4 Instalación de ARWpost**
 
-
+```
+cd $ARWPOST_DIR
+```
 Agregar -lnetcdff en src/Makefile
 
 ```
@@ -340,16 +349,6 @@ ls *.exe
 ARWpost.exe 
 ```
 
-Editar namelist.ARWpost configurando los parámetros que sean necesarios. Ejemplo:
-
-```
-cd $HOME/WRF/ARWpost
-interval_seconds = 3600
-```
-
-Consultar este parámetro con Experto/usuario de WRF.
-
-
 **3.5 Instalación de grads**
 
 ```
@@ -370,13 +369,12 @@ _________________________________________________________________________
 
 ```
 cd $WPS_DIR
-mkdir geog
-cd geog
 wget http://www2.mmm.ucar.edu/wrf/src/wps_files/geog_complete.tar.bz2
 tar -xjvf geog_complete.tar.bz2
 rm geog_complete.tar.bz2
 
 #datos adicionales
+cd geog
 wget http://www2.mmm.ucar.edu/wrf/src/wps_files/topo_gmted2010_30s.tar.bz2
 tar -xjvf topo_gmted2010_30s.tar
 rm topo_gmted2010_30s.tar
@@ -385,7 +383,6 @@ wget http://www2.mmm.ucar.edu/wrf/src/wps_files/topo_30s.tar.bz2
 tar -xjvf topo_30s.tar.bz2
 rm  topo_30s.tar.bz2
 
-
 wget http://www2.mmm.ucar.edu/wrf/src/wps_files/modis_landuse_21class_30s.tar.bz2
 tar -xjvf modis_landuse_21class_30s.tar.bz2
 rm modis_landuse_21class_30s.tar.bz2
@@ -393,8 +390,9 @@ rm modis_landuse_21class_30s.tar.bz2
 Actualizar namelist.wps con path al directorio recien creado
 
 ```
-cd $WPS_DIR
-geog_data_path = ‘/home/< USER >/wrf_mendieta/<WRF_VERSION>/WPS/geog’ # <USER> y <WRF_VERSION> que correspondan
+cd $WRF_BASE/scenarios
+#Edit namelist.wps
+geog_data_path = ‘/home/<USER>/wrf_mendieta/<WRF_VERSION>/WPS/geog’ # <USER> y <WRF_VERSION> que correspondan
 ```
 _________________________________________________________________________
 **5. Ejecucion del modelo**
@@ -405,49 +403,118 @@ Configuración de entorno:
 cd $WRF_BASE/
 mkdir gribfiles
 ```
+**5.1. Crear el directorio scenarios con la siguiente estructura:**
 
-Correr script: run_wrf_model.py
-Este script realiza las siguientes tareas:
-1) Descarga grib files dada una fecha en el directorio creado en el step anterior  
-2) Actualiza fecha en namelist.wps
-3) Actualiza fecha en los namelist.input
-4) Actualiza fecha en namelist.arwPost
-5) Ejecuta el modelo para cada uno de los scenarios
+```
+tree scenarios
+scenarios
+├── Scenario1
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── Scenario2
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── Scenario3
+│   ├── namelist.ARWpost
+│   └── namelist.input
+│   .
+│   .
+│   .
+├── ScenarioN
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── gradfile1.gs
+├── gradfile2.gs
+├── .
+├── .
+├── .
+├── gradfileN.gs
+└── namelist.wps
+```
+
+Ejemplo usado para CAEARTE  
+```
+tree scenarios
+scenarios
+├── A_Thompson_MYJ
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── B_Marrison_MYJ_sf_sfclay_physics
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── cbar.gs
+├── C_WDM6_QNSE_sf_sfclay_physics
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── D_WRF6_MYJ_sf_sfclay_physics
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── E_WDM6_MYNN3
+│   ├── namelist.ARWpost
+│   └── namelist.input
+├── HPC_CBA_Rain.gs
+├── HPC_CBA_Tmax_Min.gs
+├── meteogramas_Preciptation.gs
+├── meteogramas_rh.gs
+├── meteogramas_Temp.gs
+├── meteogramas_WindDir.gs
+├── meteogramas_WindSpeed.gs
+├── namelist.wps
+└── rgbset.gs
+```
+
+**5.2 Correr script: run_wrf_model.py**   
+Este script realiza las siguientes tareas:   
+1) Descarga grib files dada una fecha en el directorio gribfiles creado en el step anterior    
+2) Actualiza fecha en namelist.wps en el directorio scenarios      
+3) Actualiza fecha en los namelist.input dentro de cada directorio scenarios/Scenarioi con i:{1..N}     
+4) Actualiza fecha en namelist.ARWpost dentro de cada directorio scenarios/Scenarioi con i:{1..N}     
+5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
 python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --cores=40
 ```
 
-El script ejecuta los 5 scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total)
+El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
 
-Se ejecutan los 5 modelos en dos nodos -20 cores p/nodo
-sbatch ./job_wrf_40.sh
-
-Ejemplo:
-
+Ejemplo: Para ejecutar todos los scenarios en dos nodos de capability (20 cores p/nodo)
 ```
 python run_wrf_model.py --start_date=2016102000 --offset=36 --cores=40
 ```
 
+Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de capability (20 cores p/nodo)  
+para las misma fecha de inicio y periodo de 36 hs    
+```
+sbatch job_wrf_40.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
+```
+
+
 Nota: 
-Ajustar el tiempo de ejecución del modelo en el script job_wrf.sh de la forma mas precisa posible.
+Ajustar el tiempo de ejecución del modelo en el script job_wrf_N.sh de la forma mas precisa posible. # con N en [40, 60, 80, 100]    
 Ejemplo si la ejecución del modelo toma aproximadamente (poco menos que) una hora y media:
 
 ```
 SBATCH --time 0-1:30
 ```
+
 La ejecución genera los output en los directorios:
 ```
-$WRF_BASE/output/<fecha_actual>/<JOB_ID>/arwpost_run/output/meteogramas
-
-donde RUN_PARAMETERS esta definido en el script job_wrf_N.sh  # con N en [40, 60, 80, 100]
+$WRF_BASE/output/<fecha_actual>/<JOB_ID>
 ```
 
-Tambien se pueden ejecutar los scripts: 
-job_wrf_60.sh 
-job_wrf_80.sh 
-job_wrf_100.sh 
+La ejecución genera logs en los directorios:
+```
+$WRF_BASE/logs/<fecha_actual>/$RUN_PARAMETERS'_'$SLURM_JOB_ID.out
+```
+donde RUN_PARAMETERS esta definido en el script job_wrf_N.sh  # con N en [40, 60, 80, 100]    
 
+
+Tambien se pueden ejecutar los scripts:  
+```
+job_wrf_60.sh  
+job_wrf_80.sh   
+job_wrf_100.sh   
+```
 Que ejecutan los scenarios usando 3,4 y 5 nodos de 20 cores c/u respectivamente
 
 ```
@@ -466,4 +533,3 @@ Importante: La quota por usuario es de 500GB. Por lo tanto es necesario limpiar(
 [3] http://www2.mmm.ucar.edu/wrf/users/docs/user_guide_V3/users_guide_chap2.htm#_Required_Compilers_and_1   
 [4] http://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php#STEP5   
 [5] http://www2.mmm.ucar.edu/wrf/users/FAQ_files/FAQ_wrf_installation.html
-
