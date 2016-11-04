@@ -409,20 +409,20 @@ mkdir gribfiles
 tree scenarios
 scenarios
 ├── Scenario1
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── Scenario2
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── Scenario3
-│   ├── namelist.ARWpost
-│   └── namelist.input
-│   .
-│   .
-│   .
+│   ├── namelist.ARWpost
+│   └── namelist.input
+│   .
+│   .
+│   .
 ├── ScenarioN
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── gradfile1.gs
 ├── gradfile2.gs
 ├── .
@@ -437,21 +437,21 @@ Ejemplo usado para CAEARTE
 tree scenarios
 scenarios
 ├── A_Thompson_MYJ
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── B_Marrison_MYJ_sf_sfclay_physics
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── cbar.gs
 ├── C_WDM6_QNSE_sf_sfclay_physics
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── D_WRF6_MYJ_sf_sfclay_physics
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── E_WDM6_MYNN3
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── HPC_CBA_Rain.gs
 ├── HPC_CBA_Tmax_Min.gs
 ├── meteogramas_Preciptation.gs
@@ -507,6 +507,7 @@ La ejecución genera logs en los directorios:
 $WRF_BASE/logs/<fecha_actual>/$RUN_PARAMETERS'_'$SLURM_JOB_ID.out
 ```
 donde RUN_PARAMETERS esta definido en el script job_wrf_N.sh  # con N en [40, 60, 80, 100]    
+
 
 
 Tambien se pueden ejecutar los scripts:  
