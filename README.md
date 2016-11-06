@@ -1,18 +1,21 @@
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/cropped-ccad.jpg)
 
+
 # Instalación y ejecución de WRF en Mendieta #
 
 
 
-## Indice
+## Índice
 
 1. Introducción 
 2. Descarga de WRF/WPS/ARWpost   
 3. Instalación de WRF + dependencias
 4. Obtención de datos terrestres
 5. Ejecución del modelo
-6. Analisis y control de ejecucion
+6. Análisis y control de ejecución
 7. Bibliografía & Guías de instalación tomadas de referencia
+
+<div style="page-break-after: always;"></div>
 
 _______________________________________________________________________________
 
@@ -20,13 +23,13 @@ _______________________________________________________________________________
 
 Código utilizado:  
 
-Procesamiento:  WRF3.6.1
-Pre-procesamiento:  WPS3.6.1
+Procesamiento: WRF3.6.1
+Pre-procesamiento: WPS3.6.1
 Post-procesamiento: ARWpost_V3  
 
-Para version WRF3.8 Realizar este procedimiento cambiando 3.6.1 por 3.8  #Bajo estudio en este momento
+Para versión WRF3.8 Realizar este procedimiento cambiando 3.6.1 por 3.8  #Bajo estudio en este momento.
 
-Herramienta adicional para post-procemiento: Grads
+Herramienta adicional para post-procesamiento: Grads
 Descargado desde:
 http://iges.org/grads/downloads.html
 
@@ -63,6 +66,8 @@ Cargar las siguientes variables de entorno
 ```
 . set_configuration.sh
 ```
+
+<div style="page-break-after: always;"></div>
 
 Descarga de WRF   
 ```
@@ -113,18 +118,18 @@ make
 make check
 make install
 ```
-Chequeo de la correcta instalacion de jasper:
+Chequeo de la correcta instalación de jasper:
 ```
 ls ../bin/
 imgcmp  imginfo  jasper  tmrdemo
 ```
 
 
-**ATENCION!!! La siguiente seccion debe usarse en caso de que las dependencias de MENDIETA no esten instaladas.**  
-**Actualmente las dependencias necesarias si estan instaladas por lo tanto pasamos directamente a la seccion 3.1.2.**  
-**En caso de que no estuvieses instaladas seguir en la siguiente seccion. Tambien es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en los archivos job_wrf_i.sh con i:{40,60,80,100}.**  
+**ATENCION!!! La siguiente sección debe usarse en caso de que las dependencias de MENDIETA no estén instaladas.**  
+**Actualmente las dependencias necesarias si están instaladas por lo tanto pasamos directamente a la sección 3.1.2.**  
+**En caso de que no estuviesen instaladas seguir en la siguiente sección. También es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en el archivo run_wrf_model.sh.**  
 
-**3.1.1 Instalacion de tools propias (Sin usar las que provee Mendieta)**
+**3.1.1 Instalación de tools propias (Sin usar las que provee Mendieta)**
 
 Cargar las siguientes variables de entorno
 ```
@@ -161,6 +166,8 @@ make install
 make check-install
 ```
 
+<div style="page-break-after: always;"></div>
+
 
 NETCDF
 ```
@@ -191,7 +198,6 @@ make install
 
 ```
 
-
 MVAPICH
 ```
 cd $WRF_BASE/library
@@ -209,6 +215,8 @@ make install
 # Add $(pwd)/../bin to PATH
 ```
 
+<div style="page-break-after: always;"></div>
+
 **3.1.2 Uso de tools instaladas en Mendieta**
 
 ```
@@ -217,7 +225,6 @@ make install
 
 
 **3.2. Instalación de WRF**
-
  
 
 ```
@@ -235,7 +242,6 @@ checking for perl... found /usr/bin/perl (perl)
 Will use NETCDF in dir: /opt/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2
 Will use PHDF5 in dir: /opt/hdf5/1.8.15-gcc_4.9.2
 which: no timex in (/opt/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2/bin:/opt/netcdf/4.3.3.1-gcc_4.9.2/bin:/opt/hdf5/1.8.15-gcc_4.9.2/bin:/opt/openmpi-cuda/1.8.8-gcc_4.9-cuda_7.0-clean/bin:/opt/gcc/4.9.3/bin:/opt/cuda/7.0/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/ibutils/bin:/opt/mendieta/bin:/home/alighezzolo/bin:/home/alighezzolo/conae/library/grads-2.0.2/bin)
-
 ```
 
 O de esta pinta si se esta usando set_custom_configuration.sh
@@ -244,7 +250,6 @@ checking for perl... found /usr/bin/perl (perl)
 Will use NETCDF in dir: /home/<USER>/wrf_mendieta/library/netCDF
 Will use PHDF5 in dir: /home/<USER>/wrf_mendieta/library/hdf5-1.8.13
 which: no timex in (/opt/gcc/4.9.3/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/ibutils/bin:/opt/mendieta/bin:/home/<USER>/bin
-
 ```
 
 Verificar que las variables **NETCDF** y **PHDF5** apunten a los path seteados en los archivos set_configuration.sh (set_custom_configuration.sh). 
@@ -264,6 +269,9 @@ DM_CC           =       mpicc -DMPI2_SUPPORT
 ```
 ./compile em_real &> compile.log
 ```
+
+<div style="page-break-after: always;"></div>
+
 Comprobar la generación de los siguientes archivos .exe:
 
 ```
@@ -319,6 +327,8 @@ ungrib.exe -> ungrib/src/ungrib.exe
 geogrid.exe -> geogrid/src/geogrid.exe
 ```
 
+<div style="page-break-after: always;"></div>
+
 Copiar este script:
 ```
 cp $WRF_BASE/link_grib.csh $WPS_DIR
@@ -365,9 +375,10 @@ cd grads-2.0.2
 mkdir data
 cp data2.tar.gz .
 tar xvf data2.tar.gz
-TODO explicar de donde obtener el arhivo data2.tar.gz (por ahora lo provee Andres)
+TODO explicar de dónde obtener el archivo data2.tar.gz (por ahora lo provee Andres)
 ```
 
+<div style="page-break-after: always;"></div>
 _________________________________________________________________________
 
 **4. Obtención de datos terrestres**
@@ -392,15 +403,16 @@ wget http://www2.mmm.ucar.edu/wrf/src/wps_files/modis_landuse_21class_30s.tar.bz
 tar -xjvf modis_landuse_21class_30s.tar.bz2
 rm modis_landuse_21class_30s.tar.bz2
 ```
-Actualizar namelist.wps con path al directorio recien creado
+Actualizar namelist.wps con path al directorio recién creado.
 
 ```
 cd $WRF_BASE/scenarios
 #Edit namelist.wps
 geog_data_path = ‘/home/<USER>/wrf_mendieta/<WRF_VERSION>/WPS/geog’ # <USER> y <WRF_VERSION> que correspondan
 ```
+<div style="page-break-after: always;"></div>
 _________________________________________________________________________
-**5. Ejecucion del modelo**
+**5. Ejecución del modelo**
 
 Configuración de entorno:
 
@@ -408,26 +420,27 @@ Configuración de entorno:
 cd $WRF_BASE/
 mkdir gribfiles
 ```
+
 **5.1. Crear el directorio scenarios con la siguiente estructura:**
 
 ```
 tree scenarios
 scenarios
 ├── Scenario1
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── Scenario2
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── Scenario3
-│   ├── namelist.ARWpost
-│   └── namelist.input
-│   .
-│   .
-│   .
+│   ├── namelist.ARWpost
+│   └── namelist.input
+│   .
+│   .
+│   .
 ├── ScenarioN
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── gradfile1.gs
 ├── gradfile2.gs
 ├── .
@@ -437,26 +450,28 @@ scenarios
 └── namelist.wps
 ```
 
+<div style="page-break-after: always;"></div>
+
 Ejemplo usado para CAEARTE  
 ```
 tree scenarios
 scenarios
 ├── A_Thompson_MYJ
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── B_Marrison_MYJ_sf_sfclay_physics
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── cbar.gs
 ├── C_WDM6_QNSE_sf_sfclay_physics
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── D_WRF6_MYJ_sf_sfclay_physics
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── E_WDM6_MYNN3
-│   ├── namelist.ARWpost
-│   └── namelist.input
+│   ├── namelist.ARWpost
+│   └── namelist.input
 ├── HPC_CBA_Rain.gs
 ├── HPC_CBA_Tmax_Min.gs
 ├── meteogramas_Preciptation.gs
@@ -477,18 +492,21 @@ Este script realiza las siguientes tareas:
 5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
-python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
+./run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
 ```
 
 El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
 
 Ejemplo: Para ejecutar todos los scenarios en dos nodos de capability (20 cores p/nodo)
 ```
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
 ```
 
 Nota: 
-Ajustar el tiempo de ejecución del modelo en el script job_wrf_N_nodes.sh de la forma mas precisa posible. # con N en [2, 3, 4, 5]    
+Ajustar el tiempo de ejecución del modelo en el script job_wrf_N_nodes.sh de la forma más precisa posible. # Con N en [2, 3, 4, 5]    
+
+<div style="page-break-after: always;"></div>
+
 Ejemplo si la ejecución del modelo toma aproximadamente (poco menos que) una hora y media:
 
 ```
@@ -501,7 +519,7 @@ para las misma fecha de inicio y periodo de 36 hs
 ```
 sbatch job_wrf_2_nodes.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
 ```
-El output de la ejecucion es el siguiente:
+El output de la ejecución es el siguiente:
 
 ```
 
@@ -543,19 +561,18 @@ capability  50363 2472        WRF alighezz PD       0:00  2  40 (null (Resources
 capability  50364 2472        WRF alighezz PD       0:00  2  40 (null (Resources)
 ```
 
-El script run_wrf_model.py ejecuta el comando **squeue -u $USER** luego de hacer submit de los jobs (ejecucion del scenario). Estos jobs estan en estado PD (pending) de obtener recursos. Cuando haya nodos disponibles para la ejecucion los jobs que obtengan recursos van a pasar a estado R (running)
+El script run_wrf_model.py ejecuta el comando **squeue -u $USER** luego de hacer submit de los jobs (ejecución del scenario). Estos jobs están en estado PD (pending) de obtener recursos. Cuando haya nodos disponibles para la ejecución los jobs que obtengan recursos van a pasar a estado R (running).
 
-EL log proporciona tambien informacion relevante:  
- * Particion a la que pertenecen los nodos   
- * JOBID:  identificador unico del job (ejecucion del scenario)
- * USER: usuario que  lanzo la ejecucin
- * NAME: Nombre e identifiador del job
- * TIME: cuando el job esta en estado R este valor se actualiza mostrando el tiempo transcurrido de ejecucion.
-   Importante: si el tiempo de ejecucion es mayor al estimado en **SBATCH --time** el job se cancela. Por lo tanto  es necesario
-   actualizar ese valor en el script job_wrf_N_nodes.sh de manera que ese valor sea mayor y correr nuevamente
- * NO: numeros de nodos asignados
- * CPU: numero de cores asignados
- * NODELIST:  lista de nodos asignados al job
+EL log proporciona también información relevante:  
+ * PARTITION: Partición a la que pertenecen los nodos   
+ * JOBID:  identificador único del job (ejecución del scenario)
+ * USER: usuario que  lanzo la ejecución
+ * NAME: Nombre e identificador del job
+ * TIME: cuando el job está en estado R este valor se actualiza mostrando el tiempo transcurrido de ejecución.
+   Importante: si el tiempo de ejecución es mayor al estimado en **SBATCH --time** el job se cancela. Por lo tanto  es necesario actualizar ese valor en el script job_wrf_N_nodes.sh de manera que ese valor sea mayor y correr nuevamente.
+ * NO: números de nodos asignados
+ * CPU: número de cores asignados
+ * NODELIST: lista de nodos asignados al job
 
 
 La ejecución genera los output en los directorios:
@@ -571,7 +588,7 @@ donde RUN_PARAMETERS esta definido en el script job_wrf_N_nodes.sh  # con N en [
 
 
 
-Tambien se pueden ejecutar los scripts:  
+También se pueden ejecutar los scripts:  
 ```
 job_wrf_3_nodes.sh  
 job_wrf_4_nodes.sh  
@@ -580,50 +597,56 @@ job_wrf_5_nodes.sh
 Que ejecutan los scenarios usando 3, 4 y 5 nodos de 20 cores c/u respectivamente
 
 ```
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=3
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=4
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=5
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=3
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=4
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=5
 ```
-Importante: La quota por usuario es de 500GB. Por lo tanto es necesario limpiar(borrar) los resultados que se van generando periodicamente, luego de su procesamiento.
+Importante: La quota por usuario es de 500GB. Por lo tanto es necesario limpiar(borrar) los resultados que se van generando periódicamente, luego de su procesamiento.
 
+<div style="page-break-after: always;"></div>
+_________________________________________________________________________
 
-**6. Analisis y control de ejecucion**
+**6. Análisis y control de ejecución**
 
-Durante la ejecucion de los jobs podemos ejecutar algunos comandos que nos brindan informacion del estado de la ejecucion:
+Durante la ejecución de los jobs podemos ejecutar algunos comandos que nos brindan información del estado de la ejecución:
 ```
 squeue -u $USER   # muestra el estado de los jobs propios
 squeue            # muestra el estado de todos los jobs en el cluster
 ```
 
-Si la ejecucion de un job esta en estado R podemos acceder al nodo para ver la ejecucion en tiempo real
+Si la ejecución de un job está en estado R podemos acceder al nodo para ver la ejecución en tiempo real
 ```
 squeue -u $USER
 capability  50361 2472        WRF alighezz R        0:13  2  40 (null mendieta[20-21])
-ssh mendieta20         # tambien podriamos haber hecho ssh mendieta21
+ssh mendieta20         # también podríamos haber hecho ssh mendieta21
 
 mendieta20 $ htop      # Ver estado de los cores. 
 ```
 
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/htop.png)
 
+<div style="page-break-after: always;"></div>
+
 ```
-ssh mendieta20         # tambien podriamos haber hecho ssh mendieta21
+ssh mendieta20         # también podríamos haber hecho ssh mendieta21
 mendieta20 $ perf top  # Ver funciones que consumen mas computo. 
 ```
 
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/perf-top-2nodes.PNG)
 
+<div style="page-break-after: always;"></div>
+
 
 ```
-ssh mendieta20         # tambien podriamos haber hecho ssh mendieta21
-lstopo                 # Conocer topologia del nodo
+ssh mendieta20         # también podríamos haber hecho ssh mendieta21
+lstopo                 # Conocer topología del nodo
 ```
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/mendieta_lstopo.png)
 
 
 
 
-
+_________________________________________________________________________
 
 **7. Bibliografía & Guías de instalación tomadas de referencia**
 
