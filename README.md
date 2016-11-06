@@ -1,4 +1,8 @@
+![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/cropped-ccad.jpg)
+
 # Instalación y ejecución de WRF en Mendieta #
+
+
 
 ## Indice
 
@@ -600,6 +604,21 @@ ssh mendieta20         # tambien podriamos haber hecho ssh mendieta21
 mendieta20 $ htop      # Ver estado de los cores. 
 ```
 
+![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/htop.png)
+
+```
+ssh mendieta20         # tambien podriamos haber hecho ssh mendieta21
+mendieta20 $ perf top  # Ver funciones que consumen mas computo. 
+```
+
+![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/perf-top-2nodes.PNG)
+
+
+```
+ssh mendieta20         # tambien podriamos haber hecho ssh mendieta21
+lstopo                 # Conocer topologia del nodo
+```
+![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/mendieta_lstopo.png)
 
 
 
