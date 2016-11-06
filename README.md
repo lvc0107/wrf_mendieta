@@ -1,5 +1,6 @@
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/cropped-ccad.jpg)
 
+
 # Instalación y ejecución de WRF en Mendieta #
 
 
@@ -13,6 +14,8 @@
 5. Ejecución del modelo
 6. Análisis y control de ejecución
 7. Bibliografía & Guías de instalación tomadas de referencia
+
+<div style="page-break-after: always;"></div>
 
 _______________________________________________________________________________
 
@@ -63,6 +66,8 @@ Cargar las siguientes variables de entorno
 ```
 . set_configuration.sh
 ```
+
+<div style="page-break-after: always;"></div>
 
 Descarga de WRF   
 ```
@@ -122,7 +127,7 @@ imgcmp  imginfo  jasper  tmrdemo
 
 **ATENCION!!! La siguiente sección debe usarse en caso de que las dependencias de MENDIETA no estén instaladas.**  
 **Actualmente las dependencias necesarias si están instaladas por lo tanto pasamos directamente a la sección 3.1.2.**  
-**En caso de que no estuvieses instaladas seguir en la siguiente sección. También es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en el archivo run_wrf_model.sh.**  
+**En caso de que no estuviesen instaladas seguir en la siguiente sección. También es importante cambiar "set_configuration.sh" por "set_custom_configuration.sh" en el archivo run_wrf_model.sh.**  
 
 **3.1.1 Instalación de tools propias (Sin usar las que provee Mendieta)**
 
@@ -161,6 +166,8 @@ make install
 make check-install
 ```
 
+<div style="page-break-after: always;"></div>
+
 
 NETCDF
 ```
@@ -191,7 +198,6 @@ make install
 
 ```
 
-
 MVAPICH
 ```
 cd $WRF_BASE/library
@@ -209,6 +215,8 @@ make install
 # Add $(pwd)/../bin to PATH
 ```
 
+<div style="page-break-after: always;"></div>
+
 **3.1.2 Uso de tools instaladas en Mendieta**
 
 ```
@@ -217,7 +225,6 @@ make install
 
 
 **3.2. Instalación de WRF**
-
  
 
 ```
@@ -235,7 +242,6 @@ checking for perl... found /usr/bin/perl (perl)
 Will use NETCDF in dir: /opt/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2
 Will use PHDF5 in dir: /opt/hdf5/1.8.15-gcc_4.9.2
 which: no timex in (/opt/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2/bin:/opt/netcdf/4.3.3.1-gcc_4.9.2/bin:/opt/hdf5/1.8.15-gcc_4.9.2/bin:/opt/openmpi-cuda/1.8.8-gcc_4.9-cuda_7.0-clean/bin:/opt/gcc/4.9.3/bin:/opt/cuda/7.0/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/ibutils/bin:/opt/mendieta/bin:/home/alighezzolo/bin:/home/alighezzolo/conae/library/grads-2.0.2/bin)
-
 ```
 
 O de esta pinta si se esta usando set_custom_configuration.sh
@@ -244,7 +250,6 @@ checking for perl... found /usr/bin/perl (perl)
 Will use NETCDF in dir: /home/<USER>/wrf_mendieta/library/netCDF
 Will use PHDF5 in dir: /home/<USER>/wrf_mendieta/library/hdf5-1.8.13
 which: no timex in (/opt/gcc/4.9.3/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/ibutils/bin:/opt/mendieta/bin:/home/<USER>/bin
-
 ```
 
 Verificar que las variables **NETCDF** y **PHDF5** apunten a los path seteados en los archivos set_configuration.sh (set_custom_configuration.sh). 
@@ -264,6 +269,9 @@ DM_CC           =       mpicc -DMPI2_SUPPORT
 ```
 ./compile em_real &> compile.log
 ```
+
+<div style="page-break-after: always;"></div>
+
 Comprobar la generación de los siguientes archivos .exe:
 
 ```
@@ -319,6 +327,8 @@ ungrib.exe -> ungrib/src/ungrib.exe
 geogrid.exe -> geogrid/src/geogrid.exe
 ```
 
+<div style="page-break-after: always;"></div>
+
 Copiar este script:
 ```
 cp $WRF_BASE/link_grib.csh $WPS_DIR
@@ -368,6 +378,7 @@ tar xvf data2.tar.gz
 TODO explicar de dónde obtener el archivo data2.tar.gz (por ahora lo provee Andres)
 ```
 
+<div style="page-break-after: always;"></div>
 _________________________________________________________________________
 
 **4. Obtención de datos terrestres**
@@ -399,8 +410,9 @@ cd $WRF_BASE/scenarios
 #Edit namelist.wps
 geog_data_path = ‘/home/<USER>/wrf_mendieta/<WRF_VERSION>/WPS/geog’ # <USER> y <WRF_VERSION> que correspondan
 ```
+<div style="page-break-after: always;"></div>
 _________________________________________________________________________
-**5. Ejecucion del modelo**
+**5. Ejecución del modelo**
 
 Configuración de entorno:
 
@@ -408,6 +420,7 @@ Configuración de entorno:
 cd $WRF_BASE/
 mkdir gribfiles
 ```
+
 **5.1. Crear el directorio scenarios con la siguiente estructura:**
 
 ```
@@ -436,6 +449,8 @@ scenarios
 ├── gradfileN.gs
 └── namelist.wps
 ```
+
+<div style="page-break-after: always;"></div>
 
 Ejemplo usado para CAEARTE  
 ```
@@ -477,18 +492,21 @@ Este script realiza las siguientes tareas:
 5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
-python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
+./run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
 ```
 
 El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
 
 Ejemplo: Para ejecutar todos los scenarios en dos nodos de capability (20 cores p/nodo)
 ```
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
 ```
 
 Nota: 
 Ajustar el tiempo de ejecución del modelo en el script job_wrf_N_nodes.sh de la forma más precisa posible. # Con N en [2, 3, 4, 5]    
+
+<div style="page-break-after: always;"></div>
+
 Ejemplo si la ejecución del modelo toma aproximadamente (poco menos que) una hora y media:
 
 ```
@@ -579,12 +597,14 @@ job_wrf_5_nodes.sh
 Que ejecutan los scenarios usando 3, 4 y 5 nodos de 20 cores c/u respectivamente
 
 ```
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=3
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=4
-python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=5
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=3
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=4
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=5
 ```
 Importante: La quota por usuario es de 500GB. Por lo tanto es necesario limpiar(borrar) los resultados que se van generando periódicamente, luego de su procesamiento.
 
+<div style="page-break-after: always;"></div>
+_________________________________________________________________________
 
 **6. Análisis y control de ejecución**
 
@@ -605,24 +625,28 @@ mendieta20 $ htop      # Ver estado de los cores.
 
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/htop.png)
 
+<div style="page-break-after: always;"></div>
+
 ```
-ssh mendieta20              # también podríamos haber hecho ssh mendieta21
+ssh mendieta20         # también podríamos haber hecho ssh mendieta21
 mendieta20 $ perf top  # Ver funciones que consumen mas computo. 
 ```
 
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/perf-top-2nodes.PNG)
 
+<div style="page-break-after: always;"></div>
+
 
 ```
 ssh mendieta20         # también podríamos haber hecho ssh mendieta21
-lstopo                          # Conocer topología del nodo
+lstopo                 # Conocer topología del nodo
 ```
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/mendieta_lstopo.png)
 
 
 
 
-
+_________________________________________________________________________
 
 **7. Bibliografía & Guías de instalación tomadas de referencia**
 
