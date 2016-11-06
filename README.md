@@ -7,7 +7,8 @@
 3. Instalación de WRF + dependencias
 4. Obtención de datos terrestres
 5. Ejecución del modelo
-6. Bibliografía & Guías de instalación tomadas de referencia
+6. Analisis y control de ejecucion
+7. Bibliografía & Guías de instalación tomadas de referencia
 
 _______________________________________________________________________________
 
@@ -472,30 +473,86 @@ Este script realiza las siguientes tareas:
 5) Ejecuta el modelo para cada uno de los scenarios  
 
 ```
-python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --cores=40
+python run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
 ```
 
 El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
 
 Ejemplo: Para ejecutar todos los scenarios en dos nodos de capability (20 cores p/nodo)
 ```
-python run_wrf_model.py --start_date=2016102000 --offset=36 --cores=40
+python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
 ```
-
-Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de capability (20 cores p/nodo)  
-para las misma fecha de inicio y periodo de 36 hs    
-```
-sbatch job_wrf_40.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
-```
-
 
 Nota: 
-Ajustar el tiempo de ejecución del modelo en el script job_wrf_N.sh de la forma mas precisa posible. # con N en [40, 60, 80, 100]    
+Ajustar el tiempo de ejecución del modelo en el script job_wrf_N_nodes.sh de la forma mas precisa posible. # con N en [2, 3, 4, 5]    
 Ejemplo si la ejecución del modelo toma aproximadamente (poco menos que) una hora y media:
 
 ```
 SBATCH --time 0-1:30
 ```
+
+
+Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de capability (20 cores p/nodo)  
+para las misma fecha de inicio y periodo de 36 hs    
+```
+sbatch job_wrf_2_nodes.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
+```
+El output de la ejecucion es el siguiente:
+
+```
+
+
+    __          _______  ______
+     \ \        / /  __ \|  ____|
+      \ \  /\  / /| |__) | |__
+       \ \/  \/ / |  _  /|  __|
+        \  /\  /  | | \ \| |
+         \/  \/   |_|  \_\_|
+
+
+Start forecast date: 2016-10-20_00:00:00
+End forecast date: 2016-10-21_12:00:00
+
+
+
+==================================================================
+sbatch job_wrf_2_nodes.sh D_WRF6_MYJ_sf_sfclay_physics 2016-10-20_00:00:00 2016-10-21_12:00:00
+Submitted batch job 50360
+==================================================================
+sbatch job_wrf_2_nodes.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
+Submitted batch job 50361
+==================================================================
+sbatch job_wrf_2_nodes.sh C_WDM6_QNSE_sf_sfclay_physics 2016-10-20_00:00:00 2016-10-21_12:00:00
+Submitted batch job 50362
+==================================================================
+sbatch job_wrf_2_nodes.sh E_WDM6_MYNN3 2016-10-20_00:00:00 2016-10-21_12:00:00
+Submitted batch job 50363
+==================================================================
+sbatch job_wrf_2_nodes.sh B_Marrison_MYJ_sf_sfclay_physics 2016-10-20_00:00:00 2016-10-21_12:00:00
+Submitted batch job 50364
+squeue -u $USER
+PARTITION   JOBID PRIO       NAME     USER ST       TIME NO CPU  GRES NODELIST(REASON)
+capability  50360 2472        WRF alighezz R        0:13  2  40 (null mendieta[17-18])
+capability  50361 2472        WRF alighezz R        0:13  2  40 (null mendieta[20-21])
+capability  50362 2472        WRF alighezz PD       0:00  2  40 (null (Resources)
+capability  50363 2472        WRF alighezz PD       0:00  2  40 (null (Resources)
+capability  50364 2472        WRF alighezz PD       0:00  2  40 (null (Resources)
+```
+
+El script run_wrf_model.py ejecuta el comando **squeue -u $USER** luego de hacer submit de los jobs (ejecucion del scenario). Estos jobs estan en estado PD (pending) de obtener recursos. Cuando haya nodos disponibles para la ejecucion los jobs que obtengan recursos van a pasar a estado R (running)
+
+EL log proporciona tambien informacion relevante:  
+ * Particion a la que pertenecen los nodos   
+ * JOBID:  identificador unico del job (ejecucion del scenario)
+ * USER: usuario que  lanzo la ejecucin
+ * NAME: Nombre e identifiador del job
+ * TIME: cuando el job esta en estado R este valor se actualiza mostrando el tiempo transcurrido de ejecucion.
+   Importante: si el tiempo de ejecucion es mayor al estimado en **SBATCH --time** el job se cancela. Por lo tanto  es necesario
+   actualizar ese valor en el script job_wrf_N_nodes.sh de manera que ese valor sea mayor y correr nuevamente
+ * NO: numeros de nodos asignados
+ * CPU: numero de cores asignados
+ * NODELIST:  lista de nodos asignados al job
+
 
 La ejecución genera los output en los directorios:
 ```
@@ -506,28 +563,50 @@ La ejecución genera logs en los directorios:
 ```
 $WRF_BASE/logs/<fecha_actual>/$RUN_PARAMETERS'_'$SLURM_JOB_ID.out
 ```
-donde RUN_PARAMETERS esta definido en el script job_wrf_N.sh  # con N en [40, 60, 80, 100]    
+donde RUN_PARAMETERS esta definido en el script job_wrf_N_nodes.sh  # con N en [2, 3, 4, 5]    
 
 
 
 Tambien se pueden ejecutar los scripts:  
 ```
-job_wrf_60.sh  
-job_wrf_80.sh   
-job_wrf_100.sh   
+job_wrf_3_nodes.sh  
+job_wrf_4_nodes.sh  
+job_wrf_5_nodes.sh  
 ```
-Que ejecutan los scenarios usando 3,4 y 5 nodos de 20 cores c/u respectivamente
+Que ejecutan los scenarios usando 3, 4 y 5 nodos de 20 cores c/u respectivamente
 
 ```
-python run_wrf_model.py --start_date=2016102000 --offset=36 --cores=60
-python run_wrf_model.py --start_date=2016102000 --offset=36 --cores=80
-python run_wrf_model.py --start_date=2016102000 --offset=36 --cores=100
+python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=3
+python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=4
+python run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=5
 ```
-
-
 Importante: La quota por usuario es de 500GB. Por lo tanto es necesario limpiar(borrar) los resultados que se van generando periodicamente, luego de su procesamiento.
 
-**6. Bibliografía & Guías de instalación tomadas de referencia**
+
+**6. Analisis y control de ejecucion**
+
+Durante la ejecucion de los jobs podemos ejecutar algunos comandos que nos brindan informacion del estado de la ejecucion:
+```
+squeue -u $USER   # muestra el estado de los jobs propios
+squeue            # muestra el estado de todos los jobs en el cluster
+```
+
+Si la ejecucion de un job esta en estado R podemos acceder al nodo para ver la ejecucion en tiempo real
+```
+squeue -u $USER
+capability  50361 2472        WRF alighezz R        0:13  2  40 (null mendieta[20-21])
+ssh mendieta20         # tambien podriamos haber hecho ssh mendieta21
+
+mendieta20 $ htop      # Ver estado de los cores. 
+```
+
+
+
+
+
+
+
+**7. Bibliografía & Guías de instalación tomadas de referencia**
 
 [1] http://forum.wrfforum.com/viewtopic.php?f=5&t=7099   
 [2] http://www.unidata.ucar.edu/software/netcdf/docs/building_netcdf_fortran.html   
