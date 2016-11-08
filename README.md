@@ -897,6 +897,9 @@ squeue            # muestra el estado de todos los jobs en el cluster
 ```
 
 Si la ejecución de un job está en estado R podemos acceder al nodo para ver la ejecución en tiempo real
+
+Ver uso de los cores  en un nodo:
+
 ```
 squeue -u $USER
 capability  50361 2472        WRF alighezz R        0:13  2  40 (null mendieta[20-21])
@@ -909,6 +912,8 @@ mendieta20 $ htop      # Ver estado de los cores.
 
 <div style="page-break-after: always;"></div>
 
+Ver que funciones de wrf.exe realizan mas computo:
+
 ```
 ssh mendieta20         # también podríamos haber hecho ssh mendieta21
 mendieta20 $ perf top  # Ver funciones que consumen mas computo. 
@@ -918,6 +923,7 @@ mendieta20 $ perf top  # Ver funciones que consumen mas computo.
 
 <div style="page-break-after: always;"></div>
 
+Conocer topologia del nodo:
 
 ```
 ssh mendieta20         # también podríamos haber hecho ssh mendieta21
@@ -925,6 +931,22 @@ lstopo                 # Conocer topología del nodo
 ```
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/mendieta_lstopo.png)
 
+
+Para hacer pruebas dentro de 1 de capability
+```
+salloc -p capability -n 20 srun --exclusive  --pty --preserve-env $SHELL
+salloc: Pending job allocation 38170
+salloc: job 38170 queued and waiting for resources
+salloc: job 38170 has been allocated resources
+salloc: Granted job allocation 38170
+[alighezzolo@mendieta11 conae]
+[alighezzolo@mendieta11 conae]squeue -u alighezzolo
+PARTITION   JOBID PRIO       NAME     USER ST       TIME NO CPU  GRES NODELIST(REASON)
+capability  38170 2115       srun alighezz  R    1:58:54  1  20 (null mendieta11)
+[alighezzolo@mendieta11 conae]
+
+```
+<div style="page-break-after: always;"></div>
 Ver informacion de la particion capability
 
 ```
