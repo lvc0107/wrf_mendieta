@@ -23,7 +23,7 @@
  truelat1  = -60.0,
  truelat2  = -30.0,
  stand_lon = -63.6,
- geog_data_path = '/home/alighezzolo/conae/WRF361/WPS/geog' 
+ geog_data_path = '/home/alighezzolo/conae/WRF3.6.1/WPS/geog' 
 / 
 
 &ungrib
