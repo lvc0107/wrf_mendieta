@@ -823,12 +823,12 @@ EL log proporciona también información relevante:
 
 La ejecución genera los output en los directorios:
 ```
-$WRF_BASE/output/$RUN_PARAMETERS/<fecha_actual>/$SLURM_JOB_ID
+$WRF_BASE/output/$RUN_PARAMETERS/meteogramas
 ```
 
 La ejecución genera logs en los directorios:
 ```
-$WRF_BASE/logs/$RUN_PARAMETERS/<fecha_actual>/$SLURM_JOB_ID
+$WRF_BASE/logs/$RUN_PARAMETERS/$SLURM_JOB_ID
 ```
 Donde RUN_PARAMETERS está definido en el script job_wrf_N_nodes.sh  
 \# con N en {2, 3, 4, 5, 6, 7, 8}    
@@ -838,7 +838,7 @@ Donde RUN_PARAMETERS está definido en el script job_wrf_N_nodes.sh
 Ver outpus generados:
 ```
 cd $WRF_BASE
-ls -l output/40_cores_A_Thompson_MYJ/05-Nov-2016/50068/
+ls -l output/40_cores_A_Thompson_MYJ/meteogramas/
 total 3.1M
 -rw-rw-r-- 1 alighezzolo alighezzolo  16K Nov  5 06:13 temp_max_A.png
 -rw-rw-r-- 1 alighezzolo alighezzolo 398K Nov  5 06:13 temp_max_A.tif
@@ -862,8 +862,14 @@ total 3.1M
 -rw-rw-r-- 1 alighezzolo alighezzolo  341 Nov  5 06:13 rain_ELENA_A.txt
 -rw-rw-r-- 1 alighezzolo alighezzolo  340 Nov  5 06:13 rain_DEVOTO_A.txt
 -rw-rw-r-- 1 alighezzolo alighezzolo  359 Nov  5 06:13 rain_DESPEÑADEROS_A.txt
-
 ```
+
+Se genera un reporte en el archivo meteogramas.html para visualizar estadisticas de todos los escenarios por región.  
+
+![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/presentation.png)
+
+<div style="page-break-after: always;"></div>
+
 
 También se pueden ejecutar los scripts:  
 ```
