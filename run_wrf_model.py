@@ -6,6 +6,7 @@ import get_GFSX025_grib2 as grib
 from datetime import datetime, timedelta
 import re
 import subprocess
+import time
 
 SEPARATOR = "=================================================================="
 
@@ -47,7 +48,7 @@ def set_date_namelist_input(namelist_input_path, environment):
     try:
 
         print SEPARATOR
-        print "Set date for namelist.input in " + namelist_input_path
+        print "Set date for namelist.input in {0}".format(namelist_input_path)
 
         SCENARIOS_DIR = environment["SCENARIOS_DIR"]
         os.chdir(SCENARIOS_DIR + "/" + namelist_input_path)
@@ -146,7 +147,7 @@ def load_configuration(environment, offset):
         raise
 
 
-def run_process_model(environment, cores):
+def run_process_model(environment, nodes):
 
     try:
         os.chdir(environment["WRF_BASE"])
@@ -156,9 +157,13 @@ def run_process_model(environment, cores):
         
         for scenario in scenarios_name:
            print SEPARATOR
-           command = "sbatch job_wrf_{0}.sh {1} {2} {3}".format(cores, scenario, start_date, end_date)
-           print command
-           os.system(command)
+           execute_command = "sbatch job_wrf_{0}_nodes.sh {1} {2} {3}".format(nodes, scenario, start_date, end_date)
+           print execute_command
+           os.system(execute_command)
+
+        check_command = "squeue -u $USER"
+        print check_command
+        os.system(check_command)
     except Exception:
         raise
 
@@ -278,28 +283,37 @@ def define_environment(start_date, offset):
 
 def usage():
 
-    print "=========================================================="
-    print "=========================================================="
-    print "=========================================================="
-    print "Execution of WRF model:"
-    print "python run_model.py -i=STARTDATE -o=OFFSET"
-    print "or:"
-    print "python run_model.py --start_date=STARTDATE --offset=OFFSET"
-    print ""
-    print "    Where STARTDATE has the follow format: YYYYMMDDHH"
-    print "    and OFFSET is an integer value that represent the forecast hours"
-    print "    starting from the STARTDATE and defined in the range [0-168]hs"
-    print ""
-    print "    Example:"
-    print "    python run_wrf_model.py -i=2015112218 -o=24"
-    print "    means Forecast of 24hs starting from the date:"
-    print "    year: 2015"
-    print "    month: 11"
-    print "    day: 22"
-    print "    hour: 18"
-    print "    forecast time: 24 hs"
-    print " "
-    print "Warning: The date is valid only until 15 days behind"
+    print """
+==================================================================================
+==================================================================================
+       Execution of WRF model:
+
+       ./run_wrf_model.py -i=STARTDATE -o=OFFSET -n=2
+       or:
+       ./run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
+
+       Where STARTDATE has the follow format: YYYYMMDDHH
+       and OFFSET is an integer value that represent the forecast hours
+       starting from the STARTDATE and defined in the range [0-168]hs.
+       The nodes flag is the number of nodes in Capability partition,
+       with nodes in [2,8].
+
+       Example:
+       ./run_wrf_model.py -i=2015112218 -o=36 -n=2
+       means Forecast of 36 hs starting from the date:
+       year: 2015
+       month: 11
+       day: 22
+       hour: 18
+       forecast time: 36 hs
+
+       running in 2 nodes of Capability partition
+
+
+       Warning: The date is valid only until 15 days behind
+==================================================================================
+==================================================================================
+      """
 
     sys.exit(1)
 
@@ -316,28 +330,38 @@ def check_parameter(option,arg):
             #TODO: define the correct range of OFFSET to validate
             # In the meantime we are defined the range of offset hours in [0-168]hs
             if not (0 <= int(arg) and  int(arg) <= 168):
-               raise
-        elif option in ("-c", "--cores"):
-            if not int(arg) in [40, 60, 80, 100]:
-               raise
+               usage()
+        elif option in ("-n", "--nodes"):
+            if not int(arg) in range(1,9):
+               usage()
         return arg
     except Exception:
-        raise
+        usage()
 
 
 def main():
 
-    start_date = None
-    offset = None
-    cores = 40  #defaul value = 2 nodes in capability partition
+    print """
+    __          _______  ______ 
+     \ \        / /  __ \|  ____|
+      \ \  /\  / /| |__) | |__   
+       \ \/  \/ / |  _  /|  __|  
+        \  /\  /  | | \ \| |     
+         \/  \/   |_|  \_\_|     
+
+        """
+    time.sleep(1)
+    start_date  = None
+    offset      = None
+    nodes       = 1  #default value = i node in capability partition
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hic:o:", ["help", "start_date=", "offset=", "cores="])
+        opts, args = getopt.getopt(sys.argv[1:], "hin:o:", ["help", "start_date=", "offset=", "nodes="])
     except getopt.GetoptError as err:
         usage()
 
     valid_start_date = False
     valid_offset = False
-    valid_cores = False
+    valid_nodes = False
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
@@ -350,19 +374,19 @@ def main():
             a = check_parameter(o,a)
             offset = a
             valid_offset = True
-        elif o in ("-c", "--cores"):
+        elif o in ("-n", "--nodes"):
             a = check_parameter(o,a)
-            cores = a
-            valid_cores = True
+            nodes = a
+            valid_nodes = True
         else:
             usage()
-    if not valid_offset or not valid_start_date or not valid_cores:
+    if not valid_offset or not valid_start_date or not valid_nodes:
         usage()
 
     try:
         environment = define_environment(start_date, offset)
         load_configuration(environment, offset)
-        run_process_model(environment, cores)
+        run_process_model(environment, nodes)
     except Exception:
         raise
 

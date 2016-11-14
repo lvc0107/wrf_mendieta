@@ -1,0 +1,39 @@
+&share
+ wrf_core = 'ARW',
+ max_dom = 1,
+ start_date = 2016-10-20_00:00:00
+ end_date = 2016-10-21_12:00:00
+ interval_seconds = 10800
+ io_form_geogrid = 2,
+/
+
+&geogrid
+ parent_id         =   1,   1,
+ parent_grid_ratio =   1,   3,
+ i_parent_start    =   1,   37,
+ j_parent_start    =   1,   83,
+ e_we              =  300,  61,
+ e_sn              =  250,  91,
+ geog_data_res     = '30s','30s',
+ dx = 4000,
+ dy = 4000,
+ map_proj = 'lambert',
+ ref_lat   = -32.4,
+ ref_lon   = -66.0,
+ truelat1  = -60.0,
+ truelat2  = -30.0,
+ stand_lon = -63.6,
+ geog_data_path = '/home/alighezzolo/conae/WRF3.6.1/WPS/geog' 
+/ 
+
+&ungrib
+ out_format = 'WPS',
+ prefix = 'GFS25',
+/
+
+&metgrid
+ fg_name = 'GFS25'
+ io_form_metgrid = 2, 
+/
+
+

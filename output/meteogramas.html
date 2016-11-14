@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CAEARTE - WRF
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    </script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js">
+    </script>
+    <script src="https://code.highcharts.com/highcharts.js">
+    </script>
+    <script src="https://code.highcharts.com/modules/exporting.js">
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp">
+    </script>
+  </head>
+  <body>
+    <style>
+      #mapa {
+        height: 300px }
+    </style>
+    <script type="text/javascript" src="meteogramas.js">
+    </script>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="http://meteo.caearte.conae.gov.ar/">CAEARTE/CONAE
+          </a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="./meteogramas.html" class="brand">Meteogramas
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="page-header">
+        <h1 class="text-center" id="title">
+          <br>
+          <br>
+          <br>
+          <br>Meteogramas-WRF
+        </h1> 
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="col-md-12">
+            <br>
+            <br>
+            <h2>Selector
+            </h2> 
+            <div class="row-fluid">
+              <label>Provincia:
+              </label>
+              <select class="form-control" id="provincia" onchange="selector_departamento(this)">
+              </select>
+            </div>
+            <div class="row-fluid">
+              <label>Departamento:
+              </label>
+              <select class="form-control" id="departamentos" onchange="selector_localidad(this)">
+              </select>
+            </div>
+            <div class="row-fluid">
+              <label>Localidad:
+              </label>
+              <select class="form-control" id="localidad" onchange="posicion_geo(this)">
+              </select>          
+            </div>
+            <br>
+            <br>
+          </div>
+          <div class="col-md-12" id="coord">
+            <br>
+            <br>
+          </div>
+          <div class="col-md-12" id="mapa"> 
+          </div>
+          <div class="col-md-12">
+            <p class="text-center">
+              <br>
+              <br>
+              Esta es una implementación experimental del modelo WRF realizado por CAEARTE - CONAE
+              <br>
+              <br>
+              El uso horario utilizado en este producto es UTC. Para obtener el horario local (HOA) realice la operación: HOA = UTC -3.
+              <br>
+              <br>
+              <a id="contacto" href="#" title="alighezzolo@conae.gov.ar">Contacto
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="col-md-12" id="barra">
+            <div class="alert alert-success" id="alerta1">Datos procesados con Éxito
+            </div>
+            <div class="alert alert-danger" id="alerta2">Error! Las coordenadas no pertenecen al dominio
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12" id="toogle1" style="height:0;margin: 10px 0 20px 0;border:2px solid red;cursor:pointer">&#9650; Cerrar &#9650;
+            </div>
+            <div class="col-md-12" id="chart_div1">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12" id="toogle2" style="height:0;margin: 10px 0 20px 0;border:2px solid blue;cursor:pointer">&#9650; Cerrar &#9650;
+            </div>
+            <div class="col-md-12" id="chart_div2">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12" id="toogle3" style="height:0;margin: 10px 0 20px 0;border:2px solid grey;cursor:pointer">&#9650; Cerrar &#9650;
+            </div>
+            <div class="col-md-12" id="chart_div3">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12" id="toogle4" style="height:0;margin: 10px 0 20px 0;border:2px solid purple;cursor:pointer">&#9650; Cerrar &#9650;
+            </div>
+            <div class="col-md-12" id="chart_div4">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12" id="toogle5" style="height:0;margin: 10px 0 20px 0;border:2px solid black;cursor:pointer">&#9650; Cerrar &#9650;
+            </div>
+            <div class="col-md-12" id="chart_div5">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12" id="toogle6" style="height:0;margin: 10px 0 20px 0;border:2px solid green;cursor:pointer">&#9650; Cerrar &#9650;
+            </div>
+            <div class="col-md-12" id="chart_div6">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+      </div>
+      <div class="col-md-12">
+        <br>
+        <br>
+      </div>
+      <div class="col-md-3">
+        <br>
+        <br>
+      </div>
+      <div class="col-md-9 well">
+        <p class="text-justify">
+          Los productos presentados en esta página no pueden ser usados para propósitos comerciales. CAEARTE/CONAE no da ninguna garantía en relación a estos productos. 
+          En ningún caso CAEARTE/CONAE puede ser responsabilizado por daños especiales, indirectos o consecuentes, o cualquier daño que esté vinculado a la utilización de estos productos. 
+          CAEARTE/CONAE no puede garantizar la exactitud de estos productos.    
+        </p>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

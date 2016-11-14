@@ -11,8 +11,8 @@ module load mpi/openmpi/1.8.4-gcc_4.9.2
 ### 3) compilers/gcc/4.9
 ### 4) mpi/mvapich2-cuda/2.1-gcc_4.9.2-cuda_7.0
 
-export WRF_VERSION=WRF361                          #Tambien disponible WRF38
-export WRF_BASE=$HOME/wrf_mendieta
+export WRF_VERSION=WRF3.6.1                        #Tambien disponible WRF38
+export WRF_BASE=$HOME/conae
 export WRF_DIR=$WRF_BASE/$WRF_VERSION/WRFV3        # Directorio principal de WRF
 export WPS_DIR=$WRF_BASE/$WRF_VERSION/WPS          # Directorio principal del pre-procesador WPS
 export ARWPOST_DIR=$WRF_BASE/$WRF_VERSION/ARWpost  # Directorio principal del post-procesador ARWPost
