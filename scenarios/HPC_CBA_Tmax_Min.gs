@@ -16,10 +16,10 @@
 'd maximo1'
 'draw shp CBA_Linea'
 './cbar'
-'draw title Temperatura Maxima- FECHA - A'
+'draw title Temperatura Maxima'
 "set display color white"
-'printim ./meteogramas/temp_max_A.png'
-'set geotiff ./meteogramas/temp_max_A'
+'printim ./meteogramas/temp_max.png'
+'set geotiff ./meteogramas/temp_max'
 'set gxout geotiff'
 'd (maximo1)'
 
@@ -33,10 +33,10 @@
 'd minimo1'
 'draw shp CBA_Linea'
 './cbar'
-'draw title Temperatura Minima - FECHA - A'
+'draw title Temperatura Minima'
 "set display color white"
-'printim ./meteogramas/temp_min_A.png'
-'set geotiff ./meteogramas/temp_min_A'
+'printim ./meteogramas/temp_min.png'
+'set geotiff ./meteogramas/temp_min'
 'set gxout geotiff'
 'd (minimo1)'
 

@@ -332,7 +332,7 @@ def check_parameter(option,arg):
             if not (0 <= int(arg) and  int(arg) <= 168):
                usage()
         elif option in ("-n", "--nodes"):
-            if not int(arg) in range(2,9):
+            if not int(arg) in range(1,9):
                usage()
         return arg
     except Exception:

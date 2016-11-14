@@ -17,7 +17,7 @@
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ALEJO_LEDESMA_A.txt',ret)
+res=write('./meteogramas/ws10_ALEJO_LEDESMA.txt',ret)
 
 *****************************ALICIA
 'set lat -31.94'
@@ -26,7 +26,7 @@ res=write('./meteogramas/ws10_ALEJO_LEDESMA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ALICIA_A.txt',ret)
+res=write('./meteogramas/ws10_ALICIA.txt',ret)
 
 
 *****************************ALMAFUERTE
@@ -36,7 +36,7 @@ res=write('./meteogramas/ws10_ALICIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ALMAFUERTE_A.txt',ret)
+res=write('./meteogramas/ws10_ALMAFUERTE.txt',ret)
 
 
 *****************************ALTA GRACIA
@@ -46,7 +46,7 @@ res=write('./meteogramas/ws10_ALMAFUERTE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ALTA_GRACIA_A.txt',ret)
+res=write('./meteogramas/ws10_ALTA_GRACIA.txt',ret)
 
 
 
@@ -58,7 +58,7 @@ res=write('./meteogramas/ws10_ALTA_GRACIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ARROYITO_A.txt',ret)
+res=write('./meteogramas/ws10_ARROYITO.txt',ret)
 
 
 
@@ -69,7 +69,7 @@ res=write('./meteogramas/ws10_ARROYITO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ARROYO_CABRAL_A.txt',ret)
+res=write('./meteogramas/ws10_ARROYO_CABRAL.txt',ret)
 
 
 
@@ -80,7 +80,7 @@ res=write('./meteogramas/ws10_ARROYO_CABRAL_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_BALNEARIA_A.txt',ret)
+res=write('./meteogramas/ws10_BALNEARIA.txt',ret)
 
 
 *****************************BERROTARAN
@@ -90,7 +90,7 @@ res=write('./meteogramas/ws10_BALNEARIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_BERROTARAN_A.txt',ret)
+res=write('./meteogramas/ws10_BERROTARAN.txt',ret)
 
 
 
@@ -101,7 +101,7 @@ res=write('./meteogramas/ws10_BERROTARAN_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_BIALET_MASSE_A.txt',ret)
+res=write('./meteogramas/ws10_BIALET_MASSE.txt',ret)
 
 
 *****************************BRINCKMANN
@@ -111,7 +111,7 @@ res=write('./meteogramas/ws10_BIALET_MASSE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_BRINCKMANN_A.txt',ret)
+res=write('./meteogramas/ws10_BRINCKMANN.txt',ret)
 
 
 *****************************CANALS
@@ -121,7 +121,7 @@ res=write('./meteogramas/ws10_BRINCKMANN_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_CANALS_A.txt',ret)
+res=write('./meteogramas/ws10_CANALS.txt',ret)
 
 
 
@@ -132,7 +132,7 @@ res=write('./meteogramas/ws10_CANALS_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_CAPILLA_DEL_MONTE_A.txt',ret)
+res=write('./meteogramas/ws10_CAPILLA_DEL_MONTE.txt',ret)
 
 
 *****************************COLONIA CAROYA
@@ -142,7 +142,7 @@ res=write('./meteogramas/ws10_CAPILLA_DEL_MONTE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_COLONIA_CAROYA_A.txt',ret)
+res=write('./meteogramas/ws10_COLONIA_CAROYA.txt',ret)
 
 
 *****************************CORDOBA
@@ -152,7 +152,7 @@ res=write('./meteogramas/ws10_COLONIA_CAROYA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_CORDOBA_A.txt',ret)
+res=write('./meteogramas/ws10_CORDOBA.txt',ret)
 
 
 *****************************COSQUIN
@@ -162,7 +162,7 @@ res=write('./meteogramas/ws10_CORDOBA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_COSQUIN_A.txt',ret)
+res=write('./meteogramas/ws10_COSQUIN.txt',ret)
 
 
 *****************************CRUZ DEL EJE
@@ -172,7 +172,7 @@ res=write('./meteogramas/ws10_COSQUIN_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_CRUZ_DEL_EJE_A.txt',ret)
+res=write('./meteogramas/ws10_CRUZ_DEL_EJE.txt',ret)
 
 *****************************DEAN FUNES
 'set lat -30.43'
@@ -181,7 +181,7 @@ res=write('./meteogramas/ws10_CRUZ_DEL_EJE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_DEAN_FUNES_A.txt',ret)
+res=write('./meteogramas/ws10_DEAN_FUNES.txt',ret)
 
 
 *****************************DEL CAMPILLO
@@ -191,7 +191,7 @@ res=write('./meteogramas/ws10_DEAN_FUNES_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_DEL_CAMPILLO_A.txt',ret)
+res=write('./meteogramas/ws10_DEL_CAMPILLO.txt',ret)
 
 
 *****************************DESPEÑADEROS
@@ -201,7 +201,7 @@ res=write('./meteogramas/ws10_DEL_CAMPILLO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_DESPEÑADEROS_A.txt',ret)
+res=write('./meteogramas/ws10_DESPEÑADEROS.txt',ret)
 
 
 *****************************DEVOTO
@@ -211,7 +211,7 @@ res=write('./meteogramas/ws10_DESPEÑADEROS_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_DEVOTO_A.txt',ret)
+res=write('./meteogramas/ws10_DEVOTO.txt',ret)
 
 
 *****************************ELENA
@@ -221,7 +221,7 @@ res=write('./meteogramas/ws10_DEVOTO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ELENA_A.txt',ret)
+res=write('./meteogramas/ws10_ELENA.txt',ret)
 
 
 *****************************EMBALSE
@@ -231,7 +231,7 @@ res=write('./meteogramas/ws10_ELENA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_EMBALSE_A.txt',ret)
+res=write('./meteogramas/ws10_EMBALSE.txt',ret)
 
 
 *****************************ETRURIA
@@ -241,7 +241,7 @@ res=write('./meteogramas/ws10_EMBALSE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ETRURIA_A.txt',ret)
+res=write('./meteogramas/ws10_ETRURIA.txt',ret)
 
 
 *****************************FREYRE
@@ -251,7 +251,7 @@ res=write('./meteogramas/ws10_ETRURIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_FREYRE_A.txt',ret)
+res=write('./meteogramas/ws10_FREYRE.txt',ret)
 
 
 *****************************GENERAL CABRERA
@@ -261,7 +261,7 @@ res=write('./meteogramas/ws10_FREYRE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_GENERAL_CABRERA_A.txt',ret)
+res=write('./meteogramas/ws10_GENERAL_CABRERA.txt',ret)
 
 
 
@@ -272,7 +272,7 @@ res=write('./meteogramas/ws10_GENERAL_CABRERA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_GENERAL_DEHEZA_A.txt',ret)
+res=write('./meteogramas/ws10_GENERAL_DEHEZA.txt',ret)
 
 
 *****************************GENERAL LAVALLE
@@ -282,7 +282,7 @@ res=write('./meteogramas/ws10_GENERAL_DEHEZA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_GENERAL_LAVALLE_A.txt',ret)
+res=write('./meteogramas/ws10_GENERAL_LAVALLE.txt',ret)
 
 
 *****************************HERNANDO
@@ -292,7 +292,7 @@ res=write('./meteogramas/ws10_GENERAL_LAVALLE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_HERNANDO_A.txt',ret)
+res=write('./meteogramas/ws10_HERNANDO.txt',ret)
 
 
 *****************************HUERTA GRANDE
@@ -302,7 +302,7 @@ res=write('./meteogramas/ws10_HERNANDO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_HUERTA_GRANDE_A.txt',ret)
+res=write('./meteogramas/ws10_HUERTA_GRANDE.txt',ret)
 
 
 *****************************HUINCA RENANCO
@@ -312,7 +312,7 @@ res=write('./meteogramas/ws10_HUERTA_GRANDE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_HUINCA_RENANCO_A.txt',ret)
+res=write('./meteogramas/ws10_HUINCA_RENANCO.txt',ret)
 
 
 
@@ -323,7 +323,7 @@ res=write('./meteogramas/ws10_HUINCA_RENANCO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_JAMES_CRAIK_A.txt',ret)
+res=write('./meteogramas/ws10_JAMES_CRAIK.txt',ret)
 
 
 
@@ -334,7 +334,7 @@ res=write('./meteogramas/ws10_JAMES_CRAIK_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_JESUS_MARIA_A.txt',ret)
+res=write('./meteogramas/ws10_JESUS_MARIA.txt',ret)
 
 
 
@@ -345,7 +345,7 @@ res=write('./meteogramas/ws10_JESUS_MARIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LA_CALERA_A.txt',ret)
+res=write('./meteogramas/ws10_LA_CALERA.txt',ret)
 
 
 *****************************LA CUMBRE
@@ -355,7 +355,7 @@ res=write('./meteogramas/ws10_LA_CALERA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LA_CUMBRE_A.txt',ret)
+res=write('./meteogramas/ws10_LA_CUMBRE.txt',ret)
 
 
 *****************************LA FALDA
@@ -365,7 +365,7 @@ res=write('./meteogramas/ws10_LA_CUMBRE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LA_FALDA_A.txt',ret)
+res=write('./meteogramas/ws10_LA_FALDA.txt',ret)
 
 
 
@@ -376,7 +376,7 @@ res=write('./meteogramas/ws10_LA_FALDA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LA_FRANCIA_A.txt',ret)
+res=write('./meteogramas/ws10_LA_FRANCIA.txt',ret)
 
 
 
@@ -387,7 +387,7 @@ res=write('./meteogramas/ws10_LA_FRANCIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LA_PARA_A.txt',ret)
+res=write('./meteogramas/ws10_LA_PARA.txt',ret)
 
 
 
@@ -398,7 +398,7 @@ res=write('./meteogramas/ws10_LA_PARA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LABORDE_A.txt',ret)
+res=write('./meteogramas/ws10_LABORDE.txt',ret)
 
 
 
@@ -409,7 +409,7 @@ res=write('./meteogramas/ws10_LABORDE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LABOULAYE_A.txt',ret)
+res=write('./meteogramas/ws10_LABOULAYE.txt',ret)
 
 
 
@@ -420,7 +420,7 @@ res=write('./meteogramas/ws10_LABOULAYE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LAGUNA_LARGA_A.txt',ret)
+res=write('./meteogramas/ws10_LAGUNA_LARGA.txt',ret)
 
 
 
@@ -431,7 +431,7 @@ res=write('./meteogramas/ws10_LAGUNA_LARGA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LAS_PERDICES_A.txt',ret)
+res=write('./meteogramas/ws10_LAS_PERDICES.txt',ret)
 
 
 
@@ -442,7 +442,7 @@ res=write('./meteogramas/ws10_LAS_PERDICES_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LAS_VARILLAS_A.txt',ret)
+res=write('./meteogramas/ws10_LAS_VARILLAS.txt',ret)
 
 
 
@@ -453,7 +453,7 @@ res=write('./meteogramas/ws10_LAS_VARILLAS_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LOS_CONDORES_A.txt',ret)
+res=write('./meteogramas/ws10_LOS_CONDORES.txt',ret)
 
 
 *****************************LUQUE
@@ -463,7 +463,7 @@ res=write('./meteogramas/ws10_LOS_CONDORES_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_LUQUE_A.txt',ret)
+res=write('./meteogramas/ws10_LUQUE.txt',ret)
 
 
 
@@ -474,7 +474,7 @@ res=write('./meteogramas/ws10_LUQUE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_MALAGUEÑO_A.txt',ret)
+res=write('./meteogramas/ws10_MALAGUEÑO.txt',ret)
 
 
 *****************************MALVINAS ARGENTINAS
@@ -484,7 +484,7 @@ res=write('./meteogramas/ws10_MALAGUEÑO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_MALVINAS_ARGENTINAS_A.txt',ret)
+res=write('./meteogramas/ws10_MALVINAS_ARGENTINAS.txt',ret)
 
 
 
@@ -495,7 +495,7 @@ res=write('./meteogramas/ws10_MALVINAS_ARGENTINAS_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_MARCOS_JUAREZ_A.txt',ret)
+res=write('./meteogramas/ws10_MARCOS_JUAREZ.txt',ret)
 
 
 
@@ -506,7 +506,7 @@ res=write('./meteogramas/ws10_MARCOS_JUAREZ_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_MINA_CLAVERO_A.txt',ret)
+res=write('./meteogramas/ws10_MINA_CLAVERO.txt',ret)
 
 
 *****************************MONTE CRISTO
@@ -516,7 +516,7 @@ res=write('./meteogramas/ws10_MINA_CLAVERO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_MONTE_CRISTO_A.txt',ret)
+res=write('./meteogramas/ws10_MONTE_CRISTO.txt',ret)
 
 
 
@@ -527,7 +527,7 @@ res=write('./meteogramas/ws10_MONTE_CRISTO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_MONTE_MAIZ_A.txt',ret)
+res=write('./meteogramas/ws10_MONTE_MAIZ.txt',ret)
 
 
 *****************************MORTEROS
@@ -537,7 +537,7 @@ res=write('./meteogramas/ws10_MONTE_MAIZ_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_MORTEROS_A.txt',ret)
+res=write('./meteogramas/ws10_MORTEROS.txt',ret)
 
 
 
@@ -548,7 +548,7 @@ res=write('./meteogramas/ws10_MORTEROS_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_OLIVA_A.txt',ret)
+res=write('./meteogramas/ws10_OLIVA.txt',ret)
 
 
 *****************************ONCATIVO
@@ -558,7 +558,7 @@ res=write('./meteogramas/ws10_OLIVA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_ONCATIVO_A.txt',ret)
+res=write('./meteogramas/ws10_ONCATIVO.txt',ret)
 
 
 
@@ -569,7 +569,7 @@ res=write('./meteogramas/ws10_ONCATIVO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_PASCANAS_A.txt',ret)
+res=write('./meteogramas/ws10_PASCANAS.txt',ret)
 
 
 *****************************PILAR
@@ -579,7 +579,7 @@ res=write('./meteogramas/ws10_PASCANAS_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_PILAR_A.txt',ret)
+res=write('./meteogramas/ws10_PILAR.txt',ret)
 
 
 *****************************PORTEÑA
@@ -589,7 +589,7 @@ res=write('./meteogramas/ws10_PILAR_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_PORTEÑA_A.txt',ret)
+res=write('./meteogramas/ws10_PORTEÑA.txt',ret)
 
 
 *****************************POZO DEL MOLLE
@@ -599,7 +599,7 @@ res=write('./meteogramas/ws10_PORTEÑA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_POZO_DEL_MOLLE_A.txt',ret)
+res=write('./meteogramas/ws10_POZO_DEL_MOLLE.txt',ret)
 
 
 *****************************QUILINO
@@ -609,7 +609,7 @@ res=write('./meteogramas/ws10_POZO_DEL_MOLLE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_QUILINO_A.txt',ret)
+res=write('./meteogramas/ws10_QUILINO.txt',ret)
 
 
 
@@ -620,7 +620,7 @@ res=write('./meteogramas/ws10_QUILINO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_RIO_CEBALLOS_A.txt',ret)
+res=write('./meteogramas/ws10_RIO_CEBALLOS.txt',ret)
 
 
 *****************************RIO CUARTO
@@ -630,7 +630,7 @@ res=write('./meteogramas/ws10_RIO_CEBALLOS_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_RIO_CUARTO_A.txt',ret)
+res=write('./meteogramas/ws10_RIO_CUARTO.txt',ret)
 
 
 
@@ -641,7 +641,7 @@ res=write('./meteogramas/ws10_RIO_CUARTO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_RIO_GRANDE_A.txt',ret)
+res=write('./meteogramas/ws10_RIO_GRANDE.txt',ret)
 
 
 *****************************RIO PRIMERO
@@ -651,7 +651,7 @@ res=write('./meteogramas/ws10_RIO_GRANDE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_RIO_PRIMERO_A.txt',ret)
+res=write('./meteogramas/ws10_RIO_PRIMERO.txt',ret)
 
 
 
@@ -662,7 +662,7 @@ res=write('./meteogramas/ws10_RIO_PRIMERO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_RIO_SEGUNDO_A.txt',ret)
+res=write('./meteogramas/ws10_RIO_SEGUNDO.txt',ret)
 
 
 
@@ -673,7 +673,7 @@ res=write('./meteogramas/ws10_RIO_SEGUNDO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_RIO_TERCERO_A.txt',ret)
+res=write('./meteogramas/ws10_RIO_TERCERO.txt',ret)
 
 
 *****************************SACANTA
@@ -683,7 +683,7 @@ res=write('./meteogramas/ws10_RIO_TERCERO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SACANTA_A.txt',ret)
+res=write('./meteogramas/ws10_SACANTA.txt',ret)
 
 
 *****************************SALDAN
@@ -693,7 +693,7 @@ res=write('./meteogramas/ws10_SACANTA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SALDAN_A.txt',ret)
+res=write('./meteogramas/ws10_SALDAN.txt',ret)
 
 
 
@@ -704,7 +704,7 @@ res=write('./meteogramas/ws10_SALDAN_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SALSIPUEDES_A.txt',ret)
+res=write('./meteogramas/ws10_SALSIPUEDES.txt',ret)
 
 
 
@@ -715,7 +715,7 @@ res=write('./meteogramas/ws10_SALSIPUEDES_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SAN_AGUSTIN_A.txt',ret)
+res=write('./meteogramas/ws10_SAN_AGUSTIN.txt',ret)
 
 
 *****************************SAN FRANCISCO
@@ -725,7 +725,7 @@ res=write('./meteogramas/ws10_SAN_AGUSTIN_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SAN_FRANCISCO_A.txt',ret)
+res=write('./meteogramas/ws10_SAN_FRANCISCO.txt',ret)
 
 
 *****************************SAN FRANCISCO DEL CHAÑAR
@@ -735,7 +735,7 @@ res=write('./meteogramas/ws10_SAN_FRANCISCO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SAN_FRANCISCO_DEL_CHAÑAR_A.txt',ret)
+res=write('./meteogramas/ws10_SAN_FRANCISCO_DEL_CHAÑAR.txt',ret)
 
 
 
@@ -746,7 +746,7 @@ res=write('./meteogramas/ws10_SAN_FRANCISCO_DEL_CHAÑAR_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SANTA_MAGDALENA_A.txt',ret)
+res=write('./meteogramas/ws10_SANTA_MAGDALENA.txt',ret)
 
 
 
@@ -757,7 +757,7 @@ res=write('./meteogramas/ws10_SANTA_MAGDALENA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SANTA_MARIA_A.txt',ret)
+res=write('./meteogramas/ws10_SANTA_MARIA.txt',ret)
 
 
 
@@ -768,7 +768,7 @@ res=write('./meteogramas/ws10_SANTA_MARIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SANTA_ROSA_DE_CALAMUCHITA_A.txt',ret)
+res=write('./meteogramas/ws10_SANTA_ROSA_DE_CALAMUCHITA.txt',ret)
 
 
 
@@ -780,7 +780,7 @@ res=write('./meteogramas/ws10_SANTA_ROSA_DE_CALAMUCHITA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SANTA_ROSA_DE_RIO_PRIMERO_A.txt',ret)
+res=write('./meteogramas/ws10_SANTA_ROSA_DE_RIO_PRIMERO.txt',ret)
 
 
 
@@ -793,7 +793,7 @@ res=write('./meteogramas/ws10_SANTA_ROSA_DE_RIO_PRIMERO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SATURNINO_M_LASPIUR_A.txt',ret)
+res=write('./meteogramas/ws10_SATURNINO_M_LASPIUR.txt',ret)
 
 
 
@@ -805,7 +805,7 @@ res=write('./meteogramas/ws10_SATURNINO_M_LASPIUR_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SERRANO_A.txt',ret)
+res=write('./meteogramas/ws10_SERRANO.txt',ret)
 
 
 
@@ -816,7 +816,7 @@ res=write('./meteogramas/ws10_SERRANO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_SERREZUELA_A.txt',ret)
+res=write('./meteogramas/ws10_SERREZUELA.txt',ret)
 
 
 
@@ -827,7 +827,7 @@ res=write('./meteogramas/ws10_SERREZUELA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_TANCACHA_A.txt',ret)
+res=write('./meteogramas/ws10_TANCACHA.txt',ret)
 
 
 *****************************TANTI
@@ -837,7 +837,7 @@ res=write('./meteogramas/ws10_TANCACHA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_TANTI_A.txt',ret)
+res=write('./meteogramas/ws10_TANTI.txt',ret)
 
 
 
@@ -849,7 +849,7 @@ res=write('./meteogramas/ws10_TANTI_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_TIO_PUJIO_A.txt',ret)
+res=write('./meteogramas/ws10_TIO_PUJIO.txt',ret)
 
 
 
@@ -860,7 +860,7 @@ res=write('./meteogramas/ws10_TIO_PUJIO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_TRANSITO_A.txt',ret)
+res=write('./meteogramas/ws10_TRANSITO.txt',ret)
 
 
 
@@ -871,7 +871,7 @@ res=write('./meteogramas/ws10_TRANSITO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_UNQUILLO_A.txt',ret)
+res=write('./meteogramas/ws10_UNQUILLO.txt',ret)
 
 
 
@@ -882,7 +882,7 @@ res=write('./meteogramas/ws10_UNQUILLO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VALLE_HERMOSO_A.txt',ret)
+res=write('./meteogramas/ws10_VALLE_HERMOSO.txt',ret)
 
 
 
@@ -893,7 +893,7 @@ res=write('./meteogramas/ws10_VALLE_HERMOSO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_CARLOS_PAZ_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_CARLOS_PAZ.txt',ret)
 
 
 
@@ -905,7 +905,7 @@ res=write('./meteogramas/ws10_VILLA_CARLOS_PAZ_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_CURA_BROCHERO_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_CURA_BROCHERO.txt',ret)
 
 
 
@@ -916,7 +916,7 @@ res=write('./meteogramas/ws10_VILLA_CURA_BROCHERO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_DE_SOTO_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_DE_SOTO.txt',ret)
 
 
 
@@ -927,7 +927,7 @@ res=write('./meteogramas/ws10_VILLA_DE_SOTO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_DEL_DIQUE_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_DEL_DIQUE.txt',ret)
 
 
 
@@ -938,7 +938,7 @@ res=write('./meteogramas/ws10_VILLA_DEL_DIQUE_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_DEL_ROSARIO_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_DEL_ROSARIO.txt',ret)
 
 
 
@@ -949,7 +949,7 @@ res=write('./meteogramas/ws10_VILLA_DEL_ROSARIO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_DEL_TOTORAL_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_DEL_TOTORAL.txt',ret)
 
 
 
@@ -960,7 +960,7 @@ res=write('./meteogramas/ws10_VILLA_DEL_TOTORAL_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_DOLORES_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_DOLORES.txt',ret)
 
 
 
@@ -972,7 +972,7 @@ res=write('./meteogramas/ws10_VILLA_DOLORES_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_GENERAL_BELGRANO_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_GENERAL_BELGRANO.txt',ret)
 
 
 
@@ -983,7 +983,7 @@ res=write('./meteogramas/ws10_VILLA_GENERAL_BELGRANO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_GIARDINO_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_GIARDINO.txt',ret)
 
 
 
@@ -994,7 +994,7 @@ res=write('./meteogramas/ws10_VILLA_GIARDINO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_HUIDOBRO_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_HUIDOBRO.txt',ret)
 
 
 
@@ -1007,7 +1007,7 @@ res=write('./meteogramas/ws10_VILLA_HUIDOBRO_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_MARIA_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_MARIA.txt',ret)
 
 
 *****************************VILLA NUEVA
@@ -1017,7 +1017,7 @@ res=write('./meteogramas/ws10_VILLA_MARIA_A.txt',ret)
 'set prnopts %g 1 1'
 'd (ws10)'
 ret=result
-res=write('./meteogramas/ws10_VILLA_NUEVA_A.txt',ret)
+res=write('./meteogramas/ws10_VILLA_NUEVA.txt',ret)
 
 
 'quit'

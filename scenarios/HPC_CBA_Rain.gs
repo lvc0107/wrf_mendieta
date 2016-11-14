@@ -19,10 +19,10 @@
 'd lluvia'
 'draw shp CBA_Linea'
 './cbar'
-'draw title Precipitacion acumulada 24 hs - FECHA - A'
+'draw title Precipitacion acumulada 24 hs'
 "set display color white"
-'printim ./meteogramas/rain24h_A.png'
-'set geotiff ./meteogramas/rain24h_A'
+'printim ./meteogramas/rain24h.png'
+'set geotiff ./meteogramas/rain24h'
 'set gxout geotiff'
 'd lluvia'
 'quit'

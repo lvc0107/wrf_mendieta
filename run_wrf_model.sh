@@ -12,7 +12,7 @@ echo SCENARIO: $1
 echo ACTUAL START DATE: $2
 echo ACTUAL END DATE: $3
 echo NODES: $4
-RUN_PARAMETERS=$[ $NODES * 20 ]_cores_$SCENARIO
+RUN_PARAMETERS=$NODES'_nodes_'$SCENARIO
 if [ -z $SLURM_JOB_ID ]; then
     SLURM_JOB_ID=11111
     TEMP_PATH=$WRF_DIR/test/em_real/$RUN_PARAMETERS/$SLURM_JOB_ID
@@ -103,9 +103,8 @@ echo real.exe execution
 echo wrf.exe execution
 echo execution time
 ###time srun numactl --physcpubind=0-19 ./wrf.exe
-###time srun ./wrf.exe
+time srun ./wrf.exe
 
-time srun --nodes=${NODES} ./wrf.exe
 echo execution status
 tail -5 rsl.error.0000
  
@@ -128,7 +127,6 @@ cp $SCENARIOS_DIR/$SCENARIO/namelist.ARWpost .
 rm -f ARWpost.exe
 ln -s $ARWPOST_DIR/ARWpost.exe ARWpost.exe
 
-###srun ./ARWpost.exe
 ./ARWpost.exe
 
 cd output
@@ -155,11 +153,14 @@ echo ==================================================
 echo executing grads -pbcx 'run meteogramas_WindSpeed.gs'
 grads -pbcx 'run meteogramas_WindSpeed.gs'
 
-LOG_DIR=$WRF_BASE/logs/$SCENARIO/$SLURM_JOB_ID
-OUTPUT_DIR=$WRF_BASE/output/$SCENARIO
+LOG_DIR=$WRF_BASE/logs/$RUN_PARAMETERS
+echo log dir: $LOG_DIR
+OUTPUT_DIR=$WRF_BASE/output/$RUN_PARAMETERS/meteogramas
+echo output dir: $OUTPUT_DIR
 mkdir -p $LOG_DIR
 mkdir -p $OUTPUT_DIR
 cp -avr $ARWPOST_RUN_DIR/output/meteogramas/* $OUTPUT_DIR
+LOGFILE=$WRF_BASE/slurm-$SLURM_JOB_ID.out
 mv $LOGFILE $LOG_DIR
 
 ################################# Clean temporary files #################################

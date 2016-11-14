@@ -19,7 +19,7 @@
 #SBATCH --ntasks-per-node=20
 
 ### Execution Time. Format: days-hours:minutes. Max time: Four days.
-#SBATCH --time 0-1:00
+#SBATCH --time 0-2:00
 
 
 ### Environment setup
