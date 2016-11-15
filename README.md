@@ -31,10 +31,6 @@ Post-procesamiento: ARWpost_V3
 
 Para versión WRF3.8 Realizar este procedimiento cambiando 3.6.1 por 3.8  #Bajo estudio en este momento.
 
-Herramienta adicional para post-procesamiento: Grads
-Descargado desde:
-http://iges.org/grads/downloads.html
-
 Requerimientos:  
 Instalados en Mendieta:
 
@@ -45,9 +41,8 @@ Instalados en Mendieta:
 
 No instalados en Mendieta:
 
-* Jasper
-Descargado desde: 
-http://www.ece.uvic.ca/~mdadams/jasper/software/jasper-1.900.1.zip  
+* Jasper: Herramienta adicional para pre-procesamiento
+* Grads: Herramienta adicional para post-procesamiento
 
 _______________________________________________________________________________
 
@@ -370,7 +365,7 @@ ARWpost.exe
 
 ```
 cd $WRF_BASE/library
-wget http://cola.gmu.edu/grads/downloads/grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
+wget ftp://cola.gmu.edu/grads/2.0/grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
 tar -xvzf grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
 rm grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
 cd grads-2.0.2
