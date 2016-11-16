@@ -410,7 +410,7 @@ Configuración de entorno:
 ```
 cd $WRF_BASE/
 . set_configuration.sh
-chmod +x run_wrf_model.py         # Solo una vez es necesario
+chmod +x run_wrf_model.*         # Solo una vez es necesario
 mkdir gribfiles
 ```
 
