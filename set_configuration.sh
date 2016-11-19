@@ -17,7 +17,7 @@ module load libs/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2
 ### 7) libs/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2
 
 export WRF_VERSION=WRF3.6.1                        #Tambien disponible WRF.3.8
-export WRF_BASE=$HOME/conae
+export WRF_BASE=$HOME/wrf_mendieta
 export WRF_DIR=$WRF_BASE/$WRF_VERSION/WRFV3        # Directorio principal de WRF
 export WPS_DIR=$WRF_BASE/$WRF_VERSION/WPS          # Directorio principal del pre-procesador WPS
 export ARWPOST_DIR=$WRF_BASE/$WRF_VERSION/ARWpost  # Directorio principal del post-procesador ARWPost

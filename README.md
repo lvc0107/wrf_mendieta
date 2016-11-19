@@ -21,7 +21,7 @@ _______________________________________________________________________________
 
 **1. Introducción**
 
-La implementación de WRF en el cluster Mendieta se encuadra en el marco de la Tesis de Licenciatura en Ciencias de la Computación de Luis Miguel Vargas Calderon.
+La implementación de WRF en el cluster Mendieta se encuadra en el marco de la Tesis de Licenciatura en Ciencias de la Computación(**FaMAF-UNC**) de Luis Miguel Vargas Calderon.
 
 Código utilizado:  
 
@@ -31,23 +31,18 @@ Post-procesamiento: ARWpost_V3
 
 Para versión WRF3.8 Realizar este procedimiento cambiando 3.6.1 por 3.8  #Bajo estudio en este momento.
 
-Herramienta adicional para post-procesamiento: Grads
-Descargado desde:
-http://iges.org/grads/downloads.html
-
 Requerimientos:  
 Instalados en Mendieta:
 
 * perl
 * netcdf   
 * hdf5   
-* mpi  
+* openmpi  
 
 No instalados en Mendieta:
 
-* Jasper
-Descargado desde: 
-http://www.ece.uvic.ca/~mdadams/jasper/software/jasper-1.900.1.zip  
+* Jasper: Herramienta adicional para pre-procesamiento
+* Grads: Herramienta adicional para post-procesamiento
 
 _______________________________________________________________________________
 
@@ -126,6 +121,7 @@ ls ../bin/
 imgcmp  imginfo  jasper  tmrdemo
 ```
 
+<div style="page-break-after: always;"></div>
 
 **ATENCION!!! La siguiente sección debe usarse en caso de que las dependencias de MENDIETA no estén instaladas.**  
 **Actualmente las dependencias necesarias si están instaladas por lo tanto pasamos directamente a la sección 3.1.2.**  
@@ -256,16 +252,25 @@ which: no timex in (/opt/gcc/4.9.3/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin
 
 Verificar que las variables **NETCDF** y **PHDF5** apunten a los path seteados en los archivos set_configuration.sh (set_custom_configuration.sh). 
 
-Elegir opciones 34-1
+Elegir opciones 34-1  para usar procesos con memoria distribuida: openmpi
+
+```
 34. x86_64 Linux, gfortran compiler with gcc (dmpar)
 Compile for nesting? (1=basic) 1
+```
 
-
-Si se va a utilizar openmpi(en lugar de mvapich), actualizar la variable DM_CC con el valor -DMPI2_SUPPORT  en el archivo configure.wrf
+Para utilizar openmpi, se debe actualizar la variable DM_CC con el valor -DMPI2_SUPPORT  en el archivo configure.wrf.
 
 ```
 DM_CC           =       mpicc -DMPI2_SUPPORT
 ```
+En caso de correr WRF en un solo nodo es necesario usar procesos con memoria compartida: openMP. 
+
+```
+33.  x86_64 Linux, gfortran compiler with gcc   (smpar)
+Compile for nesting? (1=basic) 1
+```
+
 
 
 ```
@@ -313,6 +318,16 @@ cd ../../
 ln -s ungrib/Variable_Tables/Vtable.GFS_new Vtable
 ```
 
+En caso de correr WRF en un solo nodo es necesario se debe declarar explicitamente el uso de openMP agregando el flag **-lgomp** a la variable WRF_LIB en el archivo configure.wps.
+
+
+```
+WRF_LIB         =       -L$(WRF_DIR)/external/io_grib1 -lio_grib1 \
+                        -L$(WRF_DIR)/external/io_grib_share -lio_grib_share \
+                        -L$(WRF_DIR)/external/io_int -lwrfio_int \
+                        -L$(WRF_DIR)/external/io_netcdf -lwrfio_nf \
+                        -L$(NETCDF)/lib -lnetcdff -lnetcdf -lgomp
+```
 
 ```
 ./compile &> compile.log
@@ -370,14 +385,11 @@ ARWpost.exe
 
 ```
 cd $WRF_BASE/library
-wget http://cola.gmu.edu/grads/downloads/grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
+wget ftp://cola.gmu.edu/grads/2.0/grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
 tar -xvzf grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
 rm grads-2.0.2-bin-CentOS5.8-x86_64.tar.gz
 cd grads-2.0.2
 mkdir data
-cp data2.tar.gz .
-tar xvf data2.tar.gz
-TODO explicar de dónde obtener el archivo data2.tar.gz (por ahora lo provee Andres)
 ```
 
 <div style="page-break-after: always;"></div>
@@ -415,6 +427,7 @@ Configuración de entorno:
 ```
 cd $WRF_BASE/
 . set_configuration.sh
+chmod +x run_wrf_model.*         # Solo una vez es necesario
 mkdir gribfiles
 ```
 
@@ -657,6 +670,8 @@ cat scenarios/A_Thompson_MYJ/namelist.input
  /
 ```
 
+<div style="page-break-after: always;"></div>
+
 3) scenarioi/namelist.ARWpost: Configuración para etapa de post-procesamiento. (Para cada scenario)
 
 Las fechas son actualizadas automaticamente por el script run_wrf_model.py
@@ -710,6 +725,8 @@ Pero eventualmente se podrían usar otras opciones como mvapich e icc. Sin embar
 Compilarse todas las soluciones de nuevo, ie modificar el archivo set_configuration.sh y volver a realizar todos los pasos desde el  paso 1: Instalación de WRF y dependencias
 5) set_custom_configuration.sh: Idem anterior
 
+<div style="page-break-after: always;"></div>
+
 
 Ver módulos que carga set_configuration.sh 
 
@@ -730,6 +747,7 @@ module avail
 ```
 
 **5.3 Correr script: run_wrf_model.py**   
+
 Este script realiza las siguientes tareas:   
 1) Descarga grib files dada una fecha en el directorio gribfiles creado en el step anterior    
 2) Actualiza fecha en namelist.wps en el directorio scenarios      
@@ -745,26 +763,21 @@ El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la
 
 Ejemplo: Para ejecutar todos los scenarios en dos nodos de Capability (20 cores p/nodo)
 ```bash
-./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
+./run_wrf_model.py --start_date=2016111000 --offset=36 --nodes=2
 ```
 
 Nota: 
 Ajustar el tiempo de ejecución del modelo en el script job_wrf_N_nodes.sh de la forma más precisa posible. # Con N en {2, 3, 4, 5, 6, 7, 8}
 
-<div style="page-break-after: always;"></div>
+
 
 Ejemplo si la ejecución del modelo toma aproximadamente (poco menos que) una hora y media:
 
 ```
 SBATCH --time 0-1:30
 ```
+<div style="page-break-after: always;"></div>
 
-
-Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de Capability (20 cores p/nodo)  
-para las misma fecha de inicio y periodo de 36 hs    
-```
-sbatch job_wrf_2_nodes.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
-```
 El output de la ejecución es el siguiente:
 
 ```
@@ -821,6 +834,13 @@ EL log proporciona también información relevante:
  * NODELIST: lista de nodos asignados al job
 
 
+Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de Capability (20 cores p/nodo)  
+para las misma fecha de inicio y periodo de 36 hs    
+```
+sbatch job_wrf_2_nodes.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
+```
+
+
 La ejecución genera los output en los directorios:
 ```
 $WRF_BASE/output/$RUN_PARAMETERS/meteogramas
@@ -833,7 +853,6 @@ $WRF_BASE/logs/$RUN_PARAMETERS/$SLURM_JOB_ID
 Donde RUN_PARAMETERS está definido en el script job_wrf_N_nodes.sh  
 \# con N en {2, 3, 4, 5, 6, 7, 8}    
 
-<div style="page-break-after: always;"></div>
 
 Ver outpus generados:
 ```
@@ -864,15 +883,16 @@ total 3.1M
 -rw-rw-r-- 1 alighezzolo alighezzolo  359 Nov  5 06:13 rain_DESPEÑADEROS_A.txt
 ```
 
+
 Se genera un reporte en el archivo meteogramas.html para visualizar estadisticas de todos los escenarios por región.  
 
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/presentation.png)
 
-<div style="page-break-after: always;"></div>
 
 
 También se pueden ejecutar los scripts:  
 ```
+job_wrf_1_nodes.sh  
 job_wrf_3_nodes.sh  
 job_wrf_4_nodes.sh  
 job_wrf_5_nodes.sh  
