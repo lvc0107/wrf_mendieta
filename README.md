@@ -763,7 +763,7 @@ El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la
 
 Ejemplo: Para ejecutar todos los scenarios en dos nodos de Capability (20 cores p/nodo)
 ```bash
-./run_wrf_model.py --start_date=2016111000 --offset=36 --nodes=2
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
 ```
 
 Nota: 
