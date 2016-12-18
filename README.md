@@ -185,7 +185,7 @@ make install
 NETCDF-Fortran
 ```
 cd $WRF_BASE/library/netcdf
-wget  wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.2.tar.gz
+wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.2.tar.gz
 tar -xvf netcdf-fortran-4.2.tar.gz
 rm netcdf-fortran-4.2.tar.gz
 cd  netcdf-fortran-4.2
