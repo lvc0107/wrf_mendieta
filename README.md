@@ -188,6 +188,8 @@ cd $WRF_BASE/library/netcdf
 wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.2.tar.gz
 tar -xvf netcdf-fortran-4.2.tar.gz
 rm netcdf-fortran-4.2.tar.gz
+# si no esta disponible el recurso intentar:
+#git clone https://github.com/Unidata/netcdf-fortran.git #ultimo relase (no 4.2)
 cd  netcdf-fortran-4.2
 ./configure --prefix=$(pwd)/..  FC=gfortran F77=gfortran CC=gcc --enable-shared 2>&1 | tee configure.log
 make
