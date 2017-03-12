@@ -29,7 +29,7 @@ export HDF5=/opt/hdf5/1.8.15-gcc_4.9.2
 export PHDF5=$HDF5
 export CPPFLAGS="-I${NETCDF}/include -I${HDF5}/include" 
 export LDFLAGS="-L${NETCDF}/lib -L${HDF5}/lib"
-export LD_LIBRARY_PATH=${NETCDF}/lib:${LD_LIBRARY_PATH}   
+export LD_LIBRARY_PATH=${NETCDF}/lib:${LD_LIBRARY_PATH}:/opt-old/netcdf/4.3.3.1-gcc_4.9.2/lib
 
 export WRFIO_NCD_LARGE_FILE_SUPPORT=1
 export WRF_EM_CORE=1
