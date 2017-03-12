@@ -15,7 +15,7 @@ export WRF_DIR=$WRF_BASE/$WRF_VERSION/WRFV3        # Directorio principal de WRF
 export WPS_DIR=$WRF_BASE/$WRF_VERSION/WPS          # Directorio principal del pre-procesador WPS
 export ARWPOST_DIR=$WRF_BASE/$WRF_VERSION/ARWpost  # Directorio principal del post-procesador ARWPost
 export GFS_DIR=$WRF_BASE/gribfiles                 # Directorio para grib files
-export SCENARIOS_DIR=$WRF_BASE/scenarios           # Directorio para scenarios
+export SCENARIOS_DIR=$WRF_BASE/ensamble            # Directorio para miembros del ensamble (scenarios)
 
 export JASPER=$WRF_BASE/library/jasper
 export JASPERLIB=$JASPER/lib
@@ -38,3 +38,8 @@ export WRF_EM_CORE=1
 export GADDIR=$WRF_BASE/library/grads-2.0.2/data
 export PATH=$PATH:$WRF_BASE/library/grads-2.0.2/bin
 
+
+mkdir -p ensamble
+mkdir -p output
+mkdir -p logs
+mkdir -p gribfiles
