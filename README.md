@@ -133,7 +133,11 @@ Cargar las siguientes variables de entorno
 ```bash
 . set_custom_configuration.sh
 ```
-
+Nota : si surge el error: 
+```bash
+ -bash: module: command not found
+```
+Esto significa que el  software Environment modules no esta instalado. comentar todas las  lineas que usen el comando module. 
 
 Zlib
 ```
@@ -158,10 +162,19 @@ wget https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.13/src/hdf5-1.8.13.tar.
 tar -xvzf hdf5-1.8.13.tar.gz
 hdf5-1.8.13.tar.gz
 cd hdf5-1.8.13/
- ./configure --prefix=$(pwd)
+mkdir build
+cd build
+make clean
+ ./configure --prefix=$(pwd)/build
+make
 make test
 make install
 make check-install
+cd $WRF_BASE
+# update $WRF_BASE/set_custom_configuration.sh with the following variable
+# export HDF5=$WRF_BASE/library/hdf5-1.8.13/build
+. set_custom_configuration.sh
+
 ```
 
 <div style="page-break-after: always;"></div>
@@ -176,10 +189,17 @@ md5sum  netcdf-4.3.3.1.tar.gz | grep 5c9dad3705a3408d27f696e5b31fb88c
 tar -xvf netcdf-4.3.3.1.tar.gz
 rm netcdf-4.3.3.1.tar.gz
 cd netcdf-4.3.3.1/
-./configure --prefix=$(pwd)/.. FC=gfortran F77=gfortran CC=gcc --enable-shared LDFLAGS="-L$HOME/WRF/library/hdf5/hdf5-1.8.13/lib"  CPPFLAGS="-I$HOME/WRF/library/hdf5/hdf5-1.8.13/include"
+mkdir build
+make clean
+./configure --prefix=$(pwd)/build FC=gfortran F77=gfortran CC=gcc --enable-shared LDFLAGS="-L$HDF5/lib"  CPPFLAGS="-I$HDF5/include"
 make
 make check
 make install
+cd $WRF_BASE
+# update $WRF_BASE/set_custom_configuration.sh with the following variable
+# export HDF5=$WRF_BASE/library/netcdf/netcdf-4.3.3.1/build
+. set_custom_configuration.sh
+
 ```
 
 NETCDF-Fortran
@@ -191,7 +211,9 @@ rm netcdf-fortran-4.2.tar.gz
 # si no esta disponible el recurso intentar:
 #git clone https://github.com/Unidata/netcdf-fortran.git #ultimo relase (no 4.2)
 cd  netcdf-fortran-4.2
-./configure --prefix=$(pwd)/..  FC=gfortran F77=gfortran CC=gcc --enable-shared 2>&1 | tee configure.log
+make clean
+mkdir build
+./configure --prefix=$(pwd)/build  FC=gfortran F77=gfortran CC=gcc --enable-shared 2>&1 | tee configure.log
 make
 make check
 make install
