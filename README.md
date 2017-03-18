@@ -139,6 +139,20 @@ Nota : si surge el error:
 ```
 Esto significa que el  software Environment modules no esta instalado. comentar todas las  lineas que usen el comando module. 
 
+Configuracion inicial a  agregar en los archivos set_configuracion.sh, set_custom_configuration.sh
+```
+export CPPFLAGS="-I${NETCDF}/include -I${HDF5}/include -I${ZLIB}/include"
+export LDFLAGS="-L${NETCDF}/lib -L${HDF5}/lib -L${ZLIB}/lib"
+export LD_LIBRARY_PATH=${ZLIB}/lib:${HDF5}/lib:${NETCDFC}/lib:${LD_LIBRARY_PATH}
+
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+export WRF_EM_CORE=1
+
+### Folder for grads configuration.
+export GADDIR=$WRF_BASE/library/grads-2.0.2/data
+export PATH=$PATH:$WRF_BASE/library/grads-2.0.2/bin
+```
+
 Zlib
 ```
 cd $WRF_BASE/library
@@ -151,6 +165,9 @@ cd zlib-1.2.8/
 ./configure --prefix=$(pwd)
 make test
 make install
+# update $WRF_BASE/set_custom_configuration.sh with the following variable
+# export ZLIB=$WRF_BASE/library/zlib/zlib-1.2.8
+. set_custom_configuration.sh
 ```
 
 HDF5
@@ -212,8 +229,8 @@ rm netcdf-fortran-4.2.tar.gz
 #git clone https://github.com/Unidata/netcdf-fortran.git #ultimo relase (no 4.2)
 cd  netcdf-fortran-4.2
 make clean
-mkdir build
-./configure --prefix=$(pwd)/build  FC=gfortran F77=gfortran CC=gcc --enable-shared 2>&1 | tee configure.log
+#install in the netcdf build directory
+./configure --prefix=$(pwd)/../netcdf-4.3.3.1/build FC=gfortran F77=gfortran CC=gcc --enable-shared 2>&1 | tee configure.log
 make
 make check
 make install
