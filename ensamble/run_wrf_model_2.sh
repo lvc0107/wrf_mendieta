@@ -153,13 +153,26 @@ echo ==================================================
 echo executing grads -pbcx 'run meteogramas_WindSpeed.gs'
 grads -pbcx 'run meteogramas_WindSpeed.gs'
 
-LOG_DIR=$WRF_BASE/logs/$RUN_PARAMETERS
-echo log dir: $LOG_DIR
-OUTPUT_DIR=$WRF_BASE/output/$RUN_PARAMETERS/meteogramas
+OUTPUT_DIR=$WRF_BASE/output/$RUN_PARAMETERS/meteogramas/$SCENARIO
 echo output dir: $OUTPUT_DIR
 mkdir -p $LOG_DIR
 mkdir -p $OUTPUT_DIR
 cp -avr $ARWPOST_RUN_DIR/output/meteogramas/* $OUTPUT_DIR
+mv $OUTPUT_DIR/*.* $OUTPUT_DIR/*$SCENARIO.*
+
+cd $OUTPUT_DIR/../meteogramas
+for scenario in .
+    cd scenario
+PROVINCIA=CORDOBA
+LOCALIDAD=NOSE
+mkdir -p $PROVINCIA/$LOCALIDAD/temperatura
+mkdir -p $PROVINCIA/$LOCALIDAD/lluvia
+mkdir -p $PROVINCIA/$LOCALIDAD/intensidad_viento 
+mkdir -p $PROVINCIA/$LOCALIDAD/direccion_viento 
+mkdir -p $PROVINCIA/$LOCALIDAD/humedad 
+
+LOG_DIR=$WRF_BASE/logs/$RUN_PARAMETERS
+echo log dir: $LOG_DIR
 LOGFILE=$WRF_BASE/slurm-$SLURM_JOB_ID.out
 mv $LOGFILE $LOG_DIR
 

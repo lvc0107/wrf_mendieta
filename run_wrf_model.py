@@ -4,11 +4,9 @@ import getopt
 import sys
 import get_GFSX025_grib2 as grib
 from datetime import datetime, timedelta
-import re
-import subprocess
 import time
 
-SEPARATOR = "=================================================================="
+SEPARATOR = '-' * 80
 
 def update_namelist_wps(environment):
     
@@ -43,15 +41,14 @@ def update_namelist_wps(environment):
         raise
 
 
-def set_date_namelist_input(namelist_input_path, environment):
+def update_namelist_input_output(scenario_path, environment):
 
     try:
-
         print SEPARATOR
-        print "Set date for namelist.input in {0}".format(namelist_input_path)
+        print "Set date for namelist.input in {0}".format(scenario_path)
 
         SCENARIOS_DIR = environment["SCENARIOS_DIR"]
-        os.chdir(SCENARIOS_DIR + "/" + namelist_input_path)
+        os.chdir(SCENARIOS_DIR + "/" + scenario_path)
 
         patterns = {
                     "run_days"      : " run_days                            = {0}\n".format(environment["run_days"]     ),
@@ -85,7 +82,7 @@ def set_date_namelist_input(namelist_input_path, environment):
         outfile.close()
         os.system("head -15 namelist.input")
 
-        print "Set date for namelist.ARWpost " + namelist_input_path
+        print "Set date for namelist.ARWpost {0}".format(scenario_path)
 
 
         patterns = {
@@ -107,7 +104,7 @@ def set_date_namelist_input(namelist_input_path, environment):
 
         infile.close()
         outfile.close()
-        os.system("head -15 " + namelist_awr)
+        os.system("head -15 {0}".format(namelist_awr))
 
     except Exception:
         raise
@@ -124,7 +121,7 @@ def download_grib_files(environment, offset):
         start_date = environment["start_date_int_format"]
 
         if not os.path.exists(start_date_dir):
-            os.system("mkdir " + start_date_dir)
+            os.system("mkdir {0}".format(start_date_dir))
 
         grib.download_grib_files(start_date, offset, GFS_DIR + "/" + start_date_dir)
 
@@ -136,12 +133,10 @@ def load_configuration(environment, offset):
 
     try:
 
-        download_grib_files(environment, offset)
         update_namelist_wps(environment)
-
         scenarios_name = environment["SCENARIOS"]
         for scenario in scenarios_name:
-            set_date_namelist_input(scenario, environment)
+            update_namelist_input_output(scenario, environment)
 
     except Exception:
         raise
@@ -262,9 +257,9 @@ def define_environment(start_date, offset):
                       }
 
         if not os.getenv("WRF_BASE"):
-            print "==============================================================="
-            print "Before run this script you should run . ./set_configuration.sh"
-            print "==============================================================="
+            print SEPARATOR
+            print "Before run this script you should run: . ./set_configuration.sh"
+            print SEPARATOR
             sys.exit(1)
 
         print "ENVIRONMENT VARIABLE LOADED: {0}".format(os.getenv("WRF_BASE"))
@@ -283,9 +278,9 @@ def define_environment(start_date, offset):
 
 def usage():
 
+    print SEPARATOR
+    print SEPARATOR
     print """
-==================================================================================
-==================================================================================
        Execution of WRF model:
 
        ./run_wrf_model.py -i=STARTDATE -o=OFFSET -n=2
@@ -295,8 +290,9 @@ def usage():
        Where STARTDATE has the follow format: YYYYMMDDHH
        and OFFSET is an integer value that represent the forecast hours
        starting from the STARTDATE and defined in the range [0-168]hs.
-       The nodes flag is the number of nodes in Capability partition,
-       with nodes in [2,8].
+       The nodes flag is the number of:
+          nodes in multi partition, with nodes in [2,8].
+          nodes in phi partition, with nodes = 1.
 
        Example:
        ./run_wrf_model.py -i=2015112218 -o=36 -n=2
@@ -307,13 +303,13 @@ def usage():
        hour: 18
        forecast time: 36 hs
 
-       running in 2 nodes of Capability partition
+       running in 2 nodes of multi partition
 
 
        Warning: The date is valid only until 15 days behind
-==================================================================================
-==================================================================================
       """
+    print SEPARATOR
+    print SEPARATOR
 
     sys.exit(1)
 
@@ -353,7 +349,7 @@ def main():
     time.sleep(1)
     start_date  = None
     offset      = None
-    nodes       = 1  #default value = i node in capability partition
+    nodes       = 2  #default value in multi partition
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hin:o:", ["help", "start_date=", "offset=", "nodes="])
     except getopt.GetoptError as err:
@@ -385,6 +381,7 @@ def main():
 
     try:
         environment = define_environment(start_date, offset)
+        download_grib_files(environment, offset)
         load_configuration(environment, offset)
         run_process_model(environment, nodes)
     except Exception:

@@ -12,7 +12,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=miguelmnr@gmail.com
 #SBATCH --job-name=WRF
-#SBATCH --partition=capability
+#SBATCH --partition=multi
 #SBATCH --exclusive
 
 #SBATCH --nodes=4

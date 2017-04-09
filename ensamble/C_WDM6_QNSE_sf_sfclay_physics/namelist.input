@@ -3,15 +3,15 @@
  run_hours                           = 36
  run_minutes                         = 0
  run_seconds                         = 0
- start_year                          = 2016
- start_month                         = 10
- start_day                           = 20
+ start_year                          = 2017
+ start_month                         = 03
+ start_day                           = 01
  start_hour                          = 00
  start_minute                        = 00
  start_second                        = 00
- end_year                            = 2016
- end_month                           = 10
- end_day                             = 21
+ end_year                            = 2017
+ end_month                           = 03
+ end_day                             = 02
  end_hour                            = 12
  end_minute                          = 00
  end_second                          = 00
@@ -52,13 +52,13 @@
  /
 
 &physics
- mp_physics                          = 10,     2,     2,
+ mp_physics                          = 16,     2,     2,
  ra_lw_physics                       = 1,     1,     1,
  ra_sw_physics                       = 2,     1,     1,
  radt                                = 4,    30,    30,
- sf_sfclay_physics                   = 2,     1,     1,
+ sf_sfclay_physics                   = 4,     1,     1,
  sf_surface_physics                  = 2,     2,     2,
- bl_pbl_physics                      = 2,     2,     2,
+ bl_pbl_physics                      = 4,     1,     1,
  bldt                                = 0,     0,     0,
  cu_physics                          = 0,     5,     0,
  cudt                                = 5,     5,     5,
@@ -69,6 +69,12 @@
  num_soil_layers                     = 4,
  sf_urban_physics                    = 0,     0,     0,
  /
+
+
+
+
+
+
  &fdda
  /
 
@@ -104,4 +110,4 @@
  nio_tasks_per_group = 0,
  nio_groups = 1,
  /
-
+ 

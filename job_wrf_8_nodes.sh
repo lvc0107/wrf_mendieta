@@ -12,7 +12,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=miguelmnr@gmail.com
 #SBATCH --job-name=WRF
-#SBATCH --partition=capability
+#SBATCH --partition=multi
 #SBATCH --exclusive
 
 #SBATCH --nodes=8
@@ -27,5 +27,5 @@
 ################################# WRF Configuration ###################################
 
 
-./run_wrf_model.sh $1 $2 $3 2
+./run_wrf_model.sh $1 $2 $3 8
 

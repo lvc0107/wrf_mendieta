@@ -133,7 +133,25 @@ Cargar las siguientes variables de entorno
 ```bash
 . set_custom_configuration.sh
 ```
+Nota : si surge el error: 
+```bash
+ -bash: module: command not found
+```
+Esto significa que el  software Environment modules no esta instalado. comentar todas las  lineas que usen el comando module. 
 
+Configuracion inicial a  agregar en los archivos set_configuracion.sh, set_custom_configuration.sh
+```
+export CPPFLAGS="-I${NETCDF}/include -I${HDF5}/include -I${ZLIB}/include"
+export LDFLAGS="-L${NETCDF}/lib -L${HDF5}/lib -L${ZLIB}/lib"
+export LD_LIBRARY_PATH=${ZLIB}/lib:${HDF5}/lib:${NETCDFC}/lib:${LD_LIBRARY_PATH}
+
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+export WRF_EM_CORE=1
+
+### Folder for grads configuration.
+export GADDIR=$WRF_BASE/library/grads-2.0.2/data
+export PATH=$PATH:$WRF_BASE/library/grads-2.0.2/bin
+```
 
 Zlib
 ```
@@ -147,6 +165,9 @@ cd zlib-1.2.8/
 ./configure --prefix=$(pwd)
 make test
 make install
+# update $WRF_BASE/set_custom_configuration.sh with the following variable
+# export ZLIB=$WRF_BASE/library/zlib/zlib-1.2.8
+. set_custom_configuration.sh
 ```
 
 HDF5
@@ -158,10 +179,19 @@ wget https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.13/src/hdf5-1.8.13.tar.
 tar -xvzf hdf5-1.8.13.tar.gz
 hdf5-1.8.13.tar.gz
 cd hdf5-1.8.13/
- ./configure --prefix=$(pwd)
+mkdir build
+cd build
+make clean
+ ./configure --prefix=$(pwd)/build
+make
 make test
 make install
 make check-install
+cd $WRF_BASE
+# update $WRF_BASE/set_custom_configuration.sh with the following variable
+# export HDF5=$WRF_BASE/library/hdf5-1.8.13/build
+. set_custom_configuration.sh
+
 ```
 
 <div style="page-break-after: always;"></div>
@@ -176,20 +206,31 @@ md5sum  netcdf-4.3.3.1.tar.gz | grep 5c9dad3705a3408d27f696e5b31fb88c
 tar -xvf netcdf-4.3.3.1.tar.gz
 rm netcdf-4.3.3.1.tar.gz
 cd netcdf-4.3.3.1/
-./configure --prefix=$(pwd)/.. FC=gfortran F77=gfortran CC=gcc --enable-shared LDFLAGS="-L$HOME/WRF/library/hdf5/hdf5-1.8.13/lib"  CPPFLAGS="-I$HOME/WRF/library/hdf5/hdf5-1.8.13/include"
+mkdir build
+make clean
+./configure --prefix=$(pwd)/build FC=gfortran F77=gfortran CC=gcc --enable-shared LDFLAGS="-L$HDF5/lib"  CPPFLAGS="-I$HDF5/include"
 make
 make check
 make install
+cd $WRF_BASE
+# update $WRF_BASE/set_custom_configuration.sh with the following variable
+# export HDF5=$WRF_BASE/library/netcdf/netcdf-4.3.3.1/build
+. set_custom_configuration.sh
+
 ```
 
 NETCDF-Fortran
 ```
 cd $WRF_BASE/library/netcdf
-wget  wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.2.tar.gz
+wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.2.tar.gz
 tar -xvf netcdf-fortran-4.2.tar.gz
 rm netcdf-fortran-4.2.tar.gz
+# si no esta disponible el recurso intentar:
+#git clone https://github.com/Unidata/netcdf-fortran.git #ultimo relase (no 4.2)
 cd  netcdf-fortran-4.2
-./configure --prefix=$(pwd)/..  FC=gfortran F77=gfortran CC=gcc --enable-shared 2>&1 | tee configure.log
+make clean
+#install in the netcdf build directory
+./configure --prefix=$(pwd)/../netcdf-4.3.3.1/build FC=gfortran F77=gfortran CC=gcc --enable-shared 2>&1 | tee configure.log
 make
 make check
 make install
@@ -239,7 +280,7 @@ checking for perl5... no
 checking for perl... found /usr/bin/perl (perl)
 Will use NETCDF in dir: /opt/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2
 Will use PHDF5 in dir: /opt/hdf5/1.8.15-gcc_4.9.2
-which: no timex in (/opt/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2/bin:/opt/netcdf/4.3.3.1-gcc_4.9.2/bin:/opt/hdf5/1.8.15-gcc_4.9.2/bin:/opt/openmpi-cuda/1.8.8-gcc_4.9-cuda_7.0-clean/bin:/opt/gcc/4.9.3/bin:/opt/cuda/7.0/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/ibutils/bin:/opt/mendieta/bin:/home/alighezzolo/bin:/home/alighezzolo/conae/library/grads-2.0.2/bin)
+which: no timex in (/opt/netcdf-fortran/4.4.2-netcdf_4.3.3.1-gcc_4.9.2/bin:/opt/netcdf/4.3.3.1-gcc_4.9.2/bin:/opt/hdf5/1.8.15-gcc_4.9.2/bin:/opt/openmpi-cuda/1.8.8-gcc_4.9-cuda_7.0-clean/bin:/opt/gcc/4.9.3/bin:/opt/cuda/7.0/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/ibutils/bin:/opt/mendieta/bin:/home/lvargas/bin:/home/lvargas/wrf_mendieta/library/grads-2.0.2/bin)
 ```
 
 O de esta pinta si se esta usando set_custom_configuration.sh
@@ -759,11 +800,11 @@ Este script realiza las siguientes tareas:
 ./run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
 ```
 
-El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición capability(40 cores en total).   
+El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición multi(40 cores en total).   
 
-Ejemplo: Para ejecutar todos los scenarios en dos nodos de Capability (20 cores p/nodo)
+Ejemplo: Para ejecutar todos los scenarios en dos nodos de multi (20 cores p/nodo)
 ```bash
-./run_wrf_model.py --start_date=2016111000 --offset=36 --nodes=2
+./run_wrf_model.py --start_date=2016102000 --offset=36 --nodes=2
 ```
 
 Nota: 
@@ -813,11 +854,11 @@ sbatch job_wrf_2_nodes.sh B_Marrison_MYJ_sf_sfclay_physics 2016-10-20_00:00:00 2
 Submitted batch job 50364
 squeue -u $USER
 PARTITION   JOBID PRIO       NAME     USER ST       TIME NO CPU  GRES NODELIST(REASON)
-capability  50360 2472        WRF alighezz R        0:13  2  40 (null mendieta[17-18])
-capability  50361 2472        WRF alighezz R        0:13  2  40 (null mendieta[20-21])
-capability  50362 2472        WRF alighezz PD       0:00  2  40 (null (Resources)
-capability  50363 2472        WRF alighezz PD       0:00  2  40 (null (Resources)
-capability  50364 2472        WRF alighezz PD       0:00  2  40 (null (Resources)
+multi       50360 2472       WRF   lvargas R        0:13  2  40 (null mendieta[17-18])
+multi       50361 2472       WRF   lvargas R        0:13  2  40 (null mendieta[20-21])
+multi       50362 2472       WRF   lvargas PD       0:00  2  40 (null (Resources)
+multi       50363 2472       WRF   lvargas PD       0:00  2  40 (null (Resources)
+multi       50364 2472       WRF   lvargas PD       0:00  2  40 (null (Resources)
 ```
 
 El script run_wrf_model.py ejecuta el comando **squeue -u $USER** luego de hacer submit de los jobs (ejecución del scenario). Estos jobs están en estado PD (pending) de obtener recursos. Cuando haya nodos disponibles para la ejecución los jobs que obtengan recursos van a pasar a estado R (running).
@@ -834,7 +875,7 @@ EL log proporciona también información relevante:
  * NODELIST: lista de nodos asignados al job
 
 
-Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de Capability (20 cores p/nodo)  
+Para ejecutar solo un scenario(por ejemplo A_Thompson_MYJ) en dos nodos de multi (20 cores p/nodo)  
 para las misma fecha de inicio y periodo de 36 hs    
 ```
 sbatch job_wrf_2_nodes.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
@@ -859,28 +900,28 @@ Ver outpus generados:
 cd $WRF_BASE
 ls -l output/40_cores_A_Thompson_MYJ/meteogramas/
 total 3.1M
--rw-rw-r-- 1 alighezzolo alighezzolo  16K Nov  5 06:13 temp_max_A.png
--rw-rw-r-- 1 alighezzolo alighezzolo 398K Nov  5 06:13 temp_max_A.tif
--rw-rw-r-- 1 alighezzolo alighezzolo  15K Nov  5 06:13 temp_min_A.png
--rw-rw-r-- 1 alighezzolo alighezzolo 398K Nov  5 06:13 temp_min_A.tif
--rw-rw-r-- 1 alighezzolo alighezzolo  26K Nov  5 06:13 rain24h_A.png
--rw-rw-r-- 1 alighezzolo alighezzolo 398K Nov  5 06:13 rain24h_A.tif
--rw-rw-r-- 1 alighezzolo alighezzolo  367 Nov  5 06:13 rain_COLONIA_CAROYA_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  312 Nov  5 06:13 rain_CAPILLA_DEL_MONTE_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  314 Nov  5 06:13 rain_CANALS_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  341 Nov  5 06:13 rain_BRINCKMANN_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  326 Nov  5 06:13 rain_BIALET_MASSE_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  344 Nov  5 06:13 rain_BERROTARAN_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  338 Nov  5 06:13 rain_BALNEARIA_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  314 Nov  5 06:13 rain_ARROYO_CABRAL_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  341 Nov  5 06:13 rain_ARROYITO_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  324 Nov  5 06:13 rain_ALTA_GRACIA_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  368 Nov  5 06:13 rain_ALMAFUERTE_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  338 Nov  5 06:13 rain_ALICIA_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  314 Nov  5 06:13 rain_ALEJO_LEDESMA_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  341 Nov  5 06:13 rain_ELENA_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  340 Nov  5 06:13 rain_DEVOTO_A.txt
--rw-rw-r-- 1 alighezzolo alighezzolo  359 Nov  5 06:13 rain_DESPEÑADEROS_A.txt
+-rw-rw-r-- 1 lvargas lvargas  16K Nov  5 06:13 temp_max_A.png
+-rw-rw-r-- 1 lvargas lvargas 398K Nov  5 06:13 temp_max_A.tif
+-rw-rw-r-- 1 lvargas lvargas  15K Nov  5 06:13 temp_min_A.png
+-rw-rw-r-- 1 lvargas lvargas 398K Nov  5 06:13 temp_min_A.tif
+-rw-rw-r-- 1 lvargas lvargas  26K Nov  5 06:13 rain24h_A.png
+-rw-rw-r-- 1 lvargas lvargas 398K Nov  5 06:13 rain24h_A.tif
+-rw-rw-r-- 1 lvargas lvargas  367 Nov  5 06:13 rain_COLONIA_CAROYA_A.txt
+-rw-rw-r-- 1 lvargas lvargas  312 Nov  5 06:13 rain_CAPILLA_DEL_MONTE_A.txt
+-rw-rw-r-- 1 lvargas lvargas  314 Nov  5 06:13 rain_CANALS_A.txt
+-rw-rw-r-- 1 lvargas lvargas  341 Nov  5 06:13 rain_BRINCKMANN_A.txt
+-rw-rw-r-- 1 lvargas lvargas  326 Nov  5 06:13 rain_BIALET_MASSE_A.txt
+-rw-rw-r-- 1 lvargas lvargas  344 Nov  5 06:13 rain_BERROTARAN_A.txt
+-rw-rw-r-- 1 lvargas lvargas  338 Nov  5 06:13 rain_BALNEARIA_A.txt
+-rw-rw-r-- 1 lvargas lvargas  314 Nov  5 06:13 rain_ARROYO_CABRAL_A.txt
+-rw-rw-r-- 1 lvargas lvargas  341 Nov  5 06:13 rain_ARROYITO_A.txt
+-rw-rw-r-- 1 lvargas lvargas  324 Nov  5 06:13 rain_ALTA_GRACIA_A.txt
+-rw-rw-r-- 1 lvargas lvargas  368 Nov  5 06:13 rain_ALMAFUERTE_A.txt
+-rw-rw-r-- 1 lvargas lvargas  338 Nov  5 06:13 rain_ALICIA_A.txt
+-rw-rw-r-- 1 lvargas lvargas  314 Nov  5 06:13 rain_ALEJO_LEDESMA_A.txt
+-rw-rw-r-- 1 lvargas lvargas  341 Nov  5 06:13 rain_ELENA_A.txt
+-rw-rw-r-- 1 lvargas lvargas  340 Nov  5 06:13 rain_DEVOTO_A.txt
+-rw-rw-r-- 1 lvargas lvargas  359 Nov  5 06:13 rain_DESPEÑADEROS_A.txt
 ```
 
 
@@ -928,7 +969,7 @@ Ver uso de los cores  en un nodo:
 
 ```
 squeue -u $USER
-capability  50361 2472        WRF alighezz R        0:13  2  40 (null mendieta[20-21])
+multi  50361 2472        WRF lvargas R        0:13  2  40 (null mendieta[20-21])
 ssh mendieta20         # también podríamos haber hecho ssh mendieta21
 
 mendieta20 $ htop      # Ver estado de los cores. 
@@ -958,28 +999,28 @@ lstopo                 # Conocer topología del nodo
 ![alt tag](https://github.com/lvc0107/wrf_mendieta/blob/master/images/mendieta_lstopo.png)
 
 
-Para hacer pruebas dentro de 1 de capability
+Para hacer pruebas dentro de 1 de multi
 ```
-salloc -p capability -n 20 srun --exclusive  --pty --preserve-env $SHELL
+salloc -p multi -n 20 srun --exclusive  --pty --preserve-env $SHELL
 salloc: Pending job allocation 38170
 salloc: job 38170 queued and waiting for resources
 salloc: job 38170 has been allocated resources
 salloc: Granted job allocation 38170
-[alighezzolo@mendieta11 conae]
-[alighezzolo@mendieta11 conae]squeue -u alighezzolo
+[lvargas@mendieta11 wrf_mendieta]
+[lvargas@mendieta11 wrf_mendieta]squeue -u lvargas
 PARTITION   JOBID PRIO       NAME     USER ST       TIME NO CPU  GRES NODELIST(REASON)
-capability  38170 2115       srun alighezz  R    1:58:54  1  20 (null mendieta11)
-[alighezzolo@mendieta11 conae]
+multi       38170 2115       srun  lvargas  R    1:58:54  1  20 (null mendieta11)
+[lvargas@mendieta11 wrf_mendieta]
 
 ```
 <div style="page-break-after: always;"></div>
-Ver informacion de la particion capability
+Ver informacion de la particion multi
 
 ```
-sinfo -p capability
+sinfo -p multi
 PARTITION  AVAIL  TIMELIMIT  NODES  STATE NODELIST
-capability    up 4-00:00:00     13  alloc mendieta[09-18,20-22]
-capability    up 4-00:00:00      1   idle mendieta19
+multi      up   4-00:00:00     13  alloc mendieta[09-18,20-22]
+multi      up   4-00:00:00      1   idle mendieta19
 ```
 
 

@@ -1,13 +1,13 @@
 &datetime
- start_date = 2016-10-20_00:00:00
- end_date = 2016-10-21_12:00:00
+ start_date = 2017-03-01_00:00:00
+ end_date = 2017-03-02_12:00:00
  interval_seconds = 3600,
  tacc = 0,
  debug_level = 0,
 /
 
 &io
- input_root_name = '../wrf_run/wrfout_d01_2016-10-20_00:00:00',
+ input_root_name = '../wrf_run/wrfout_d01_2017-03-01_00:00:00',
  output_root_name = './output/output'
  plot = 'all_list'
  fields = 'height,pressure,tk,tc,rh2,wd10,ws10'
