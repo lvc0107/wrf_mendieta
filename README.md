@@ -469,7 +469,6 @@ Configuración de entorno:
 cd $WRF_BASE/
 . set_configuration.sh
 chmod +x run_wrf_model.*         # Solo una vez es necesario
-mkdir gribfiles
 ```
 
 Actualizar namelist.wps con path al directorio geog creado en el step anterior
@@ -1007,6 +1006,7 @@ salloc: job 38170 queued and waiting for resources
 salloc: job 38170 has been allocated resources
 salloc: Granted job allocation 38170
 [lvargas@mendieta11 wrf_mendieta]
+[lvargas@mendieta11 wrf_mendieta]./job_wrf_2_nodes.sh A_Thompson_MYJ 2016-10-20_00:00:00 2016-10-21_12:00:00
 [lvargas@mendieta11 wrf_mendieta]squeue -u lvargas
 PARTITION   JOBID PRIO       NAME     USER ST       TIME NO CPU  GRES NODELIST(REASON)
 multi       38170 2115       srun  lvargas  R    1:58:54  1  20 (null mendieta11)
