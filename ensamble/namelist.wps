@@ -1,8 +1,8 @@
 &share
  wrf_core = 'ARW',
  max_dom = 1,
- start_date = 2017-03-01_00:00:00
- end_date = 2017-03-02_12:00:00
+ start_date = 2017-05-07_00:00:00
+ end_date = 2017-05-08_12:00:00
  interval_seconds = 10800
  io_form_geogrid = 2,
 /
@@ -23,7 +23,7 @@
  truelat1  = -60.0,
  truelat2  = -30.0,
  stand_lon = -63.6,
- geog_data_path = '/home/lvargas/wrf_mendieta/WRF3.6.1/WPS/geog' 
+ geog_data_path = '/home/alighezzolo/wrf_mendieta/WRF3.6.1/WPS/geog' 
 / 
 
 &ungrib

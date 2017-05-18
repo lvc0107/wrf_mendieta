@@ -10,7 +10,7 @@
 ### Samples of job scripts in /usr/share/doc/mendieta/
  
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=miguelmnr@gmail.com
+#SBATCH --mail-user=andreslighezzolo@gmail.com
 #SBATCH --job-name=WRF
 #SBATCH --partition=multi
 #SBATCH --exclusive
