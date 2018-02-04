@@ -25,11 +25,11 @@ La implementación de WRF en el cluster Mendieta se encuadra en el marco de la T
 
 Código utilizado:  
 
-Procesamiento: WRF3.6.1
-Pre-procesamiento: WPS3.6.1
+Procesamiento: WRF3.8
+Pre-procesamiento: WPS3.8
 Post-procesamiento: ARWpost_V3  
 
-Para versión WRF3.8 Realizar este procedimiento cambiando 3.6.1 por 3.8  #Bajo estudio en este momento.
+Para versiones posteriores a 3.8 realizar este procedimiento cambiando 3.8 por 3.x
 
 Requerimientos:  
 Instalados en Mendieta:
@@ -54,39 +54,41 @@ ssh <USER>@mendieta.ccad.unc.edu.ar
 cd $HOME
 git clone https://github.com/lvc0107/wrf_mendieta.git
 cd wrf_mendieta
-mkdir WRF3.6.1 
+mkdir WRF3.8 
 ```
 
 
-Cargar las siguientes variables de entorno
+Los modulos necesarios para ejecutar WRF en Mendieta deben cargarse 
+ejecutando el script "set_configuration.sh <WRF number version>" 
+ Cargar las siguientes variables de entorno
 
 ```bash
-. set_configuration.sh
+. set_configuration.sh 3.8
 ```
 
 <div style="page-break-after: always;"></div>
 
 Descarga de WRF   
 ```
-cd $WRF_BASE/WRF3.6.1
-wget http://www2.mmm.ucar.edu/wrf/src/WRFV3.6.1.TAR.gz
-tar -xvzf WRFV3.6.1.TAR.gz
-rm WRFV3.6.1.TAR.gz
+cd $WRF_BASE/WRF3.8
+wget http://www2.mmm.ucar.edu/wrf/src/WRFV3.8.TAR.gz
+tar -xvzf WRFV3.8.TAR.gz
+rm WRFV3.8.TAR.gz
 ```
 
 Descarga de WPS
 
 ```
-cd $WRF_BASE/WRF3.6.1
-wget http://www2.mmm.ucar.edu/wrf/src/WPSV3.6.1.TAR.gz
-tar -xvzf WPSV3.6.1.TAR.gz
-rm WPSV3.6.1.TAR.gz
+cd $WRF_BASE/WRF3.8
+wget http://www2.mmm.ucar.edu/wrf/src/WPSV3.8.TAR.gz
+tar -xvzf WPSV3.8.TAR.gz
+rm WPSV3.8.TAR.gz
 ```
 
 Descarga de ARWpost
 
 ```
-cd $WRF_BASE/WRF3.6.1
+cd $WRF_BASE/WRF3.8
 wget http://www2.mmm.ucar.edu/wrf/src/ARWpost_V3.tar.gz
 tar -xvzf ARWpost_V3.tar.gz 
 rm ARWpost_V3.tar.gz
@@ -104,7 +106,6 @@ Jasper:
 ```
 cd $WRF_BASE
 
-module load compilers/gcc/4.9
 mkdir -p library/jasper
 cd library/jasper
 wget http://www.ece.uvic.ca/~mdadams/jasper/software/jasper-1.900.1.zip
@@ -131,15 +132,15 @@ imgcmp  imginfo  jasper  tmrdemo
 
 Cargar las siguientes variables de entorno
 ```bash
-. set_custom_configuration.sh
+. set_custom_configuration.sh 3.8
 ```
 Nota : si surge el error: 
 ```bash
  -bash: module: command not found
 ```
-Esto significa que el  software Environment modules no esta instalado. comentar todas las  lineas que usen el comando module. 
+Esto significa que el software Environment modules no esta instalado. Comentar todas las lineas que usen el comando module. 
 
-Configuracion inicial a  agregar en los archivos set_configuracion.sh, set_custom_configuration.sh
+Configuracion inicial a agregar en los archivos set_configuracion.sh, set_custom_configuration.sh
 ```
 export CPPFLAGS="-I${NETCDF}/include -I${HDF5}/include -I${ZLIB}/include"
 export LDFLAGS="-L${NETCDF}/lib -L${HDF5}/lib -L${ZLIB}/lib"
@@ -167,7 +168,7 @@ make test
 make install
 # update $WRF_BASE/set_custom_configuration.sh with the following variable
 # export ZLIB=$WRF_BASE/library/zlib/zlib-1.2.8
-. set_custom_configuration.sh
+. set_custom_configuration.sh 3.8
 ```
 
 HDF5
@@ -190,7 +191,7 @@ make check-install
 cd $WRF_BASE
 # update $WRF_BASE/set_custom_configuration.sh with the following variable
 # export HDF5=$WRF_BASE/library/hdf5-1.8.13/build
-. set_custom_configuration.sh
+. set_custom_configuration.sh 3.8
 
 ```
 
@@ -215,7 +216,7 @@ make install
 cd $WRF_BASE
 # update $WRF_BASE/set_custom_configuration.sh with the following variable
 # export HDF5=$WRF_BASE/library/netcdf/netcdf-4.3.3.1/build
-. set_custom_configuration.sh
+. set_custom_configuration.sh 3.8
 
 ```
 
@@ -327,7 +328,7 @@ ls -lt main/*.exe
 
 real.exe
 tc.exe
-nup.exe
+nup.exe #No presente en WRF3.8
 ndown.exe
 wrf.exe
 ```
@@ -397,7 +398,7 @@ cp $WRF_BASE/link_grib.csh $WPS_DIR
 ```
 cd $ARWPOST_DIR
 ```
-Agregar -lnetcdff en src/Makefile
+En caso de que no este presente, agregar -lnetcdff en src/Makefile
 
 ```
 ARWpost.exe: $(OBJS)
@@ -439,7 +440,7 @@ _________________________________________________________________________
 **4. Obtención de datos terrestres**
 
 ```bash
-cd $WPS_DIR
+cd $WRF_BASE
 wget http://www2.mmm.ucar.edu/wrf/src/wps_files/geog_complete.tar.bz2
 tar -xjvf geog_complete.tar.bz2
 rm geog_complete.tar.bz2
@@ -465,19 +466,14 @@ _________________________________________________________________________
 
 Configuración de entorno:
 
+
 ```
 cd $WRF_BASE/
-. set_configuration.sh
+. set_configuration.sh 3.8
 chmod +x run_wrf_model.*         # Solo una vez es necesario
 ```
 
-Actualizar namelist.wps con path al directorio geog creado en el step anterior
 
-```
-cd $WRF_BASE/scenarios
-#Edit namelist.wps
-geog_data_path = ‘/home/<USER>/wrf_mendieta/<WRF_VERSION>/WPS/geog’ # <USER> y <WRF_VERSION> que correspondan
-```
 
 **5.1. Crear el directorio scenarios con la siguiente estructura:**
 
@@ -584,7 +580,7 @@ cat namelist.wps
  truelat1  = -60.0,
  truelat2  = -30.0,
  stand_lon = -63.6,
- geog_data_path = '/home/lvargas/wrf_mendieta/WRF.3.6.1/WPS/geog'
+ geog_data_path = '/home/lvargas/wrf_mendieta/geog'
 /
 
 &ungrib
@@ -763,7 +759,7 @@ extrapolate = .true.
 4) set_configuration.sh : Este archivo carga los módulos a usar:  compilador , MPI, etc. por default usa gcc y openmpi
 Pero eventualmente se podrían usar otras opciones como mvapich e icc. Sin embargo si se desea probar otros módulos deben
 Compilarse todas las soluciones de nuevo, ie modificar el archivo set_configuration.sh y volver a realizar todos los pasos desde el  paso 1: Instalación de WRF y dependencias
-5) set_custom_configuration.sh: Idem anterior
+5) set_custom_configuration.sh: Idem anterior pero utilizando NetCDF/HDF5 compilados manualmenente
 
 <div style="page-break-after: always;"></div>
 
@@ -797,6 +793,7 @@ Este script realiza las siguientes tareas:
 
 ```bash
 ./run_wrf_model.py --start_date=STARTDATE --offset=OFFSET --nodes=2
+#STARTDATE tiene el siguiente formato: YYYYMMDDHH
 ```
 
 El script ejecuta todos los scenarios en paralelo corriendo WRF en 2 nodos de la partición multi(40 cores en total).   

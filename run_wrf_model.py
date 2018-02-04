@@ -15,8 +15,8 @@ def update_namelist_wps(environment):
         print SEPARATOR
         print "Set date for namelist.wps"
 
-        SCENARIOS_DIR = environment["SCENARIOS_DIR"]
-        os.chdir(SCENARIOS_DIR)
+        ENSAMBLE_DIR = environment["ENSAMBLE_DIR"]
+        os.chdir(ENSAMBLE_DIR)
         patterns = {
                     "start_date" : " start_date = {0}\n".format(environment["start_date"]),
                     "end_date"   : " end_date = {0}\n".format(environment["end_date"])
@@ -47,8 +47,8 @@ def update_namelist_input_output(scenario_path, environment):
         print SEPARATOR
         print "Set date for namelist.input in {0}".format(scenario_path)
 
-        SCENARIOS_DIR = environment["SCENARIOS_DIR"]
-        os.chdir(SCENARIOS_DIR + "/" + scenario_path)
+        ENSAMBLE_DIR = environment["ENSAMBLE_DIR"]
+        os.chdir(ENSAMBLE_DIR + "/" + scenario_path)
 
         patterns = {
                     "run_days"      : " run_days                            = {0}\n".format(environment["run_days"]     ),
@@ -134,7 +134,7 @@ def load_configuration(environment, offset):
     try:
 
         update_namelist_wps(environment)
-        scenarios_name = environment["SCENARIOS"]
+        scenarios_name = environment["ENSAMBLE"]
         for scenario in scenarios_name:
             update_namelist_input_output(scenario, environment)
 
@@ -146,7 +146,7 @@ def run_process_model(environment, nodes):
 
     try:
         os.chdir(environment["WRF_BASE"])
-        scenarios_name = environment["SCENARIOS"]
+        scenarios_name = environment["ENSAMBLE"]
         start_date = environment["start_date"]
         end_date = environment["end_date"]
         
@@ -179,10 +179,10 @@ def get_scenarios_name(environment):
 
     try:
 
-        SCENARIOS_DIR = environment["SCENARIOS_DIR"]
-        os.chdir(SCENARIOS_DIR)
+        ENSAMBLE_DIR = environment["ENSAMBLE_DIR"]
+        os.chdir(ENSAMBLE_DIR)
         scenarios_name = []
-        subdirs = [x[0] for x in os.walk(SCENARIOS_DIR)]
+        subdirs = [x[0] for x in os.walk(ENSAMBLE_DIR)]
         for subdir in subdirs:
             scenarios_name.append(subdir.split("/")[-1])
 
@@ -266,9 +266,9 @@ def define_environment(start_date, offset):
         environment["WRF_BASE"] = os.getenv("WRF_BASE")
         print "ENVIRONMENT VARIABLE LOADED: {0}".format(os.getenv("GFS_DIR"))
         environment["GFS_DIR"] = os.getenv("GFS_DIR")
-        print "ENVIRONMENT VARIABLE LOADED: {0}".format(os.getenv("SCENARIOS_DIR"))
-        environment["SCENARIOS_DIR"] = os.getenv("SCENARIOS_DIR")
-        environment["SCENARIOS"] = get_scenarios_name(environment)
+        print "ENVIRONMENT VARIABLE LOADED: {0}".format(os.getenv("ENSAMBLE_DIR"))
+        environment["ENSAMBLE_DIR"] = os.getenv("ENSAMBLE_DIR")
+        environment["ENSAMBLE"] = get_scenarios_name(environment)
 
         return environment
 

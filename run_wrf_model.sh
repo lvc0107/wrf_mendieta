@@ -1,5 +1,4 @@
 #!/bin/bash
-. ./set_configuration.sh
 
 ################################# WRF Configuration ###################################
 
@@ -43,7 +42,7 @@ echo Entering directory $WPS_RUN_DIR
 cd $WPS_RUN_DIR
 
 cp $WPS_DIR/link_grib.csh .
-cp $SCENARIOS_DIR/namelist.wps .
+cp $ENSAMBLE_DIR/namelist.wps .
 ln -s $WPS_DIR/geogrid .
 ln -s $WPS_DIR/geogrid.exe .
 
@@ -70,7 +69,7 @@ cd $WRF_RUN_DIR
 ln -sf $WPS_RUN_DIR/met_em.* .
 cp $WRF_DIR/run/* .
 echo setting $SCENARIO
-cp $SCENARIOS_DIR/$SCENARIO/namelist.input .
+cp $ENSAMBLE_DIR/$SCENARIO/namelist.input .
 
 rm -f real.exe
 ln -s $WRF_DIR/run/real.exe real.exe
@@ -122,7 +121,7 @@ cd $ARWPOST_RUN_DIR
 ### Target folder for ARWPost
 mkdir -p output/meteogramas
 
-cp $SCENARIOS_DIR/$SCENARIO/namelist.ARWpost .
+cp $ENSAMBLE_DIR/$SCENARIO/namelist.ARWpost .
 
 rm -f ARWpost.exe
 ln -s $ARWPOST_DIR/ARWpost.exe ARWpost.exe
@@ -130,7 +129,7 @@ ln -s $ARWPOST_DIR/ARWpost.exe ARWpost.exe
 ./ARWpost.exe
 
 cd output
-cp $SCENARIOS_DIR/*.gs .
+cp $ENSAMBLE_DIR/*.gs .
 echo ==================================================
 echo executing grads -pbcx 'run HPC_CBA_Tmax_Min.gs'
 grads -pbcx 'run HPC_CBA_Tmax_Min.gs'
