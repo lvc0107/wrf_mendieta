@@ -10,6 +10,20 @@
 
 #######################################################################################
 
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied"
+    echo "Execution mode:"
+    echo "1 ) . set_configuration <WRF_VERSION_NUMBER> (must be installed)"
+    echo "2 ) . set_configuration # take the default value:3.8 "
+    echo "Example"
+    echo "2 ) . set_configuration 3.8 "
+    export WRF_VERSION=WRF3.8
+  else
+    export WRF_VERSION=WRF$1
+fi
+
+
 ### Environment modules
 
 echo "    __          _______  ______ "
@@ -29,7 +43,6 @@ module list
 echo ""
 echo "Variables defined:"
 
-export WRF_VERSION=WRF$1
 echo WRF_VERSION=$WRF_VERSION
 
 export WRF_BASE=$HOME/wrf_mendieta
