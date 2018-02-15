@@ -159,10 +159,19 @@ def run_process_model(environment, nodes):
         ensamble_names = environment["ENSAMBLE"]
         start_date = environment["start_date"]
         end_date = environment["end_date"]
+        import re
+        with open('job_wrf.sh') as infile:
+            with open('job_wrf.sh', 'r+') as outfile:
+                for line in infile:
+                    if re.search(r'(--nodes=[0-9]{1})', line):
+                        line = re.sub(r'(--nodes=[0-9]{1})', '--nodes={0}'.format(nodes), line)
+                    outfile.write(line)
+        infile.close()
+        outfile.close()
 
         for ensamble in ensamble_names:
             print SEPARATOR
-            execute_command = "sbatch job_wrf_{0}_nodes.sh {1} {2} {3}".format(nodes, ensamble, start_date, end_date)
+            execute_command = "sbatch job_wrf.sh {0} {1} {2} {3}".format(ensamble, start_date, end_date, nodes)
             print execute_command
             os.system(execute_command)
 
@@ -365,7 +374,7 @@ def main():
     parser.add_argument('-i', '--start_date', help='Start date for a forecast')
     parser.add_argument('-o', '--offset', help='Amount of forecast hs')
     parser.add_argument('-n', '--nodes', help='Mendieta nodes'  )
-    args = parser.parse_args()  
+    args = parser.parse_args()
 
     if args.start_date and args.offset and args.nodes:
         start_date = args.start_date
