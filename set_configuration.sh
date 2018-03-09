@@ -17,14 +17,11 @@ if [ $# -eq 0 ]
     echo "1 ) . set_configuration <WRF_VERSION_NUMBER> (must be installed)"
     echo "2 ) . set_configuration # take the default value:3.8 "
     echo "Example"
-    echo "2 ) . set_configuration 3.8 "
+    echo " . set_configuration 3.8 "
     export WRF_VERSION=WRF3.8
   else
     export WRF_VERSION=WRF$1
 fi
-
-
-### Environment modules
 
 echo "    __          _______  ______ "
 echo "    \ \        / /  __ \|  ____|"
@@ -34,12 +31,15 @@ echo "       \  /\  /  | | \ \| |     "
 echo "        \/  \/   |_|  \_\_|     "
 echo ""
 
+### Environment modules
+
 module load gcc/5
 module load openmpi/2
 module load hdf5/1.8.18
 module load netcdf/4.4.1.1
 module load netcdf-fortran/4.4.4
 module list
+
 echo ""
 echo "Variables defined:"
 

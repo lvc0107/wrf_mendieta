@@ -16,7 +16,7 @@
 #SBATCH --partition=multi
 #SBATCH --exclusive
 
-#SBATCH --nodes=4
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=20
 
 ### Execution Time. Format: days-hours:minutes. Max time: Four days.

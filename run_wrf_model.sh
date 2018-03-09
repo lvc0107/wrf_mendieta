@@ -3,15 +3,15 @@
 ################################# WRF Configuration ###################################
 
 
-SCENARIO=$1
+ENSAMBLE=$1
 ACTUAL_START_DATE=$2
 ACTUAL_END_DATE=$3
 NODES=$4
-echo SCENARIO: $1
+echo ENSAMBLE: $1
 echo ACTUAL START DATE: $2
 echo ACTUAL END DATE: $3
 echo NODES: $4
-RUN_PARAMETERS=$NODES'_nodes_'$SCENARIO
+RUN_PARAMETERS=$NODES'_nodes_'$ENSAMBLE
 if [ -z $SLURM_JOB_ID ]; then
     SLURM_JOB_ID=11111
     TEMP_PATH=$WRF_DIR/test/em_real/$RUN_PARAMETERS/$SLURM_JOB_ID
@@ -68,8 +68,8 @@ cd $WRF_RUN_DIR
 
 ln -sf $WPS_RUN_DIR/met_em.* .
 cp $WRF_DIR/run/* .
-echo setting $SCENARIO
-cp $ENSAMBLE_DIR/$SCENARIO/namelist.input .
+echo setting $ENSAMBLE
+cp $ENSAMBLE_DIR/$ENSAMBLE/namelist.input .
 
 rm -f real.exe
 ln -s $WRF_DIR/run/real.exe real.exe
@@ -121,7 +121,7 @@ cd $ARWPOST_RUN_DIR
 ### Target folder for ARWPost
 mkdir -p output/meteogramas
 
-cp $ENSAMBLE_DIR/$SCENARIO/namelist.ARWpost .
+cp $ENSAMBLE_DIR/$ENSAMBLE/namelist.ARWpost .
 
 rm -f ARWpost.exe
 ln -s $ARWPOST_DIR/ARWpost.exe ARWpost.exe
@@ -130,27 +130,7 @@ ln -s $ARWPOST_DIR/ARWpost.exe ARWpost.exe
 
 cd output
 cp $ENSAMBLE_DIR/*.gs .
-echo ==================================================
-echo executing grads -pbcx 'run HPC_CBA_Tmax_Min.gs'
-grads -pbcx 'run HPC_CBA_Tmax_Min.gs'
-echo ==================================================
-echo executing grads -pbcx 'run HPC_CBA_Rain.gs'
-grads -pbcx 'run HPC_CBA_Rain.gs'
-echo ==================================================
-echo executing grads -pbcx 'run meteogramas_Preciptation.gs'
-grads -pbcx 'run meteogramas_Preciptation.gs'
-echo ==================================================
-echo executing grads -pbcx 'run meteogramas_rh.gs'
-grads -pbcx 'run meteogramas_rh.gs'
-echo ==================================================
-echo executing grads -pbcx 'run meteogramas_Temp.gs'
-grads -pbcx 'run meteogramas_Temp.gs'
-echo ==================================================
-echo executing grads -pbcx 'run meteogramas_WindDir.gs'
-grads -pbcx 'run meteogramas_WindDir.gs'
-echo ==================================================
-echo executing grads -pbcx 'run meteogramas_WindSpeed.gs'
-grads -pbcx 'run meteogramas_WindSpeed.gs'
+sh $WRF_BASE/grads_process.sh
 
 LOG_DIR=$WRF_BASE/logs/$RUN_PARAMETERS
 echo log dir: $LOG_DIR

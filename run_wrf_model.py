@@ -340,15 +340,16 @@ def usage(msg):
     sys.exit(1)
 
 
-def check_parameter(i, o, n):
+def check_parameter(init_date, offset, nodes, force=None):
 
     try:
-        date = datetime.strptime(i, '%Y%m%d%H')
+        date = datetime.strptime(init_date, '%Y%m%d%H')
         if date < datetime.now() - timedelta(days=14):
-            usage(msg="Date available until 14 days ago")
-        if not int(o) in range(0, MAX_OFFSET + 1):
+            if not force:
+	        usage(msg="Date available until 14 days ago")
+        if not int(offset) in range(0, MAX_OFFSET + 1):
             usage(msg="Forecast's hours grater than 168hs")
-        if not int(n) in range(MIN_NODES_AMOUNT, MAX_NODES_AMOUNT):
+        if not int(nodes) in range(MIN_NODES_AMOUNT, MAX_NODES_AMOUNT):
             usage(msg="Mendieta nodes out of allowed range")
     except ValueError:
         usage(msg="Error in the date format")
@@ -374,13 +375,15 @@ def main():
     parser.add_argument('-i', '--start_date', help='Start date for a forecast')
     parser.add_argument('-o', '--offset', help='Amount of forecast hs')
     parser.add_argument('-n', '--nodes', help='Mendieta nodes'  )
+    parser.add_argument('-f', '--force', action='store_true', help='force execution for any date'  )
     args = parser.parse_args()
 
     if args.start_date and args.offset and args.nodes:
         start_date = args.start_date
         offset = args.offset
         nodes = args.nodes
-        check_parameter(start_date, offset, nodes)
+        force = args.force
+        check_parameter(start_date, offset, nodes, force)
     else:
         usage("Insert all the parameters")
 
