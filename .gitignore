@@ -1,0 +1,7 @@
+output
+logs
+geog
+library
+geogrid
+slurm-*
+*.pyc
